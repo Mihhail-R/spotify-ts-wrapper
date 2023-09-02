@@ -8,7 +8,7 @@ Please keep in mind that Spotify provides their own SDK as well. See more info h
 
 ## Usage
 
--   You must supply your own HTTP client implementing IBaseClient interface to the wrapper.
+-   You must supply your own HTTP client implementing IHttpClient interface to the wrapper.
 -   Import the wrapper and create a new instance of the SpotifyClient class.
 -   Inject the HTTP client into the SpotifyClient constructor.
 -   Call the methods on the SpotifyClient instance, all endpoints are separated into their own classes.
@@ -16,11 +16,11 @@ Please keep in mind that Spotify provides their own SDK as well. See more info h
 
 ```typescript
 import { SpotifyClient } from '..';
-import { IBaseClient } from '..';
+import { IHttpClient } from '..';
 import { Album } from './Album';
 
 // Keep in mind you are also supposed to implement authorization. *This is not covered*
-const httpClient: IBaseClient = {
+const httpClient: IHttpClient = {
 	sendGetRequest: async (url: string, options?: any) => {
 		// your implementation
 	},
@@ -39,3 +39,10 @@ const spotifyClient = new SpotifyClient(httpClient);
 
 const album: Album = await spotifyClient.albums.getAlbum('albumId');
 ```
+
+## TODO
+
+-   [ ] Add playlists wrapper
+    -   ref: https://developer.spotify.com/documentation/web-api/reference/get-playlist/
+-   [ ] Add recommendations wrapper
+    -   ref: https://developer.spotify.com/documentation/web-api/reference/get-recommendations
