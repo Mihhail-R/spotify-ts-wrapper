@@ -13,34 +13,26 @@
 		"test": "jest",
 		"prepare": "husky install",
 		"upgrade-packages": "npx npm-check-updates -u && npm i",
-		"build": "swc ./src -d ./build"
+		"build": "tsc"
 	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/JaanJah/typescript-template.git"
-	},
-	"author": "JaanJah",
+	"author": "Mihhail-R",
 	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/JaanJah/typescript-template/issues"
-	},
-	"homepage": "https://github.com/JaanJah/typescript-template#readme",
+	"homepage": "",
 	"devDependencies": {
-		"@jaanjah/eslint-config": "^1.1.0",
+		"@jaanjah/eslint-config": "^1.2.1",
 		"@jaanjah/prettier-config": "^1.0.1",
-		"@swc/cli": "^0.1.61",
-		"@swc/core": "^1.3.32",
-		"@swc/jest": "^0.2.24",
-		"@types/jest": "^29.4.0",
+		"@swc/cli": "^0.1.62",
+		"@swc/core": "^1.3.82",
+		"@swc/jest": "^0.2.29",
+		"@types/jest": "^29.5.4",
 		"@types/node": "^18",
+		"axios": "^1.5.0",
+		"dotenv": "^16.3.1",
 		"husky": "^8.0.3",
-		"jest": "^29.4.2",
+		"jest": "^29.6.4",
 		"prettier": "^2.8.3",
 		"prettier-eslint-cli": "^7.1.0",
 		"pretty-quick": "^3.1.3",
-		"typescript": "^4.9.5"
-	},
-	"dependencies": {
-		"axios": "^1.4.0"
+		"typescript": "^5.2.2"
 	}
 }
