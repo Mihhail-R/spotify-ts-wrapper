@@ -1,0 +1,18 @@
+{
+	"compilerOptions": {
+		"lib": ["ESNext"],
+		"outDir": "./build/",
+		"target": "ESNext",
+		"removeComments": true,
+		"baseUrl": "./",
+		"moduleResolution": "node",
+		"esModuleInterop": true,
+		"sourceMap": true,
+		"declaration": true,
+		"noImplicitAny": true,
+		"strictNullChecks": true,
+		"alwaysStrict": true
+	},
+	"include": ["src/**/*"],
+	"exclude": ["node_modules", "dist"]
+}
