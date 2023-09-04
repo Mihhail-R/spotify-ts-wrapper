@@ -14,10 +14,7 @@ export default class ArtistsWrapper {
 
   public async getArtists(artistIds: string[]): Promise<{ artists: Artist[] }> {
     return await this.client.sendGetRequest<{ artists: Artist[] }>(
-      `${this.path}`,
-      {
-        ids: artistIds.join(","),
-      },
+      `${this.path}?ids=${artistIds.join(",")}`,
     );
   }
 
@@ -29,9 +26,10 @@ export default class ArtistsWrapper {
 
   public async getArtistTopTracks(
     artistId: string,
+    market?: string,
   ): Promise<{ tracks: Track[] }> {
     return await this.client.sendGetRequest<{ tracks: Track[] }>(
-      `${this.path}/${artistId}/top-tracks`,
+      `${this.path}/${artistId}/top-tracks?market=${market}`,
     );
   }
 

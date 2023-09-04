@@ -6,15 +6,18 @@ export default class ShowsWrapper {
     this.client = client;
   }
 
-  public async getShow(showId: string): Promise<Show> {
-    return await this.client.sendGetRequest<Show>(`shows/${showId}`);
+  public async getShow(showId: string, market?: string): Promise<Show> {
+    return await this.client.sendGetRequest<Show>(
+      `shows/${showId}?market=${market}`,
+    );
   }
 
   public async getShows(
     showIds: string[],
+    market?: string,
   ): Promise<{ shows: SimplifiedShow[] }> {
     return await this.client.sendGetRequest<{ shows: SimplifiedShow[] }>(
-      `shows?ids=${showIds.join(",")}`,
+      `shows?ids=${showIds.join(",")}&market=${market}`,
     );
   }
 
