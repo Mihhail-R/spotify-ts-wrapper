@@ -1,7 +1,7 @@
 import axios, {Axios, AxiosResponse} from "axios";
 
-import IHttpClient from "../src/SpotifyClient/IHttpClient";
-import {ClientCredentials} from "../src/Types/ClientCredentials";
+import IHttpClient from "../../src/SpotifyClient/IHttpClient";
+import {ClientCredentials} from "../../src/Types/ClientCredentials";
 
 import {SPOTIFY_AUTH_URL, SPOTIFY_CLIENT_ID, SPOTIFY_SECRET} from "./config";
 
@@ -61,6 +61,8 @@ export default class BaseClient implements IHttpClient {
 		const response: AxiosResponse<T> = await this.client.get(url, {
 			params,
 		});
+
+		console.log(response);
 
 		return response.data;
 	}
