@@ -7,7 +7,7 @@ export default class UserWrapper {
     this.client = client;
   }
   public async me(): Promise<Me> {
-    return await this.client.sendGetRequest<Me>("me");
+    return await this.client.get<Me>("me");
   }
 
   public async getTopItems<T extends UserTopItemsTypes>(
@@ -17,12 +17,12 @@ export default class UserWrapper {
     timeRange: "long_term" | "medium_term" | "short_term" = "medium_term",
   ): Promise<UserTopItems<T>> {
     if (type === "artists") {
-      return await this.client.sendGetRequest<UserTopItems<T>>(
+      return await this.client.get<UserTopItems<T>>(
         `me/top/${type}?limit=${limit}&offset=${offset}&time_range=${timeRange}`,
       );
     }
 
-    return await this.client.sendGetRequest<UserTopItems<T>>(
+    return await this.client.get<UserTopItems<T>>(
       `me/top/${type}?limit=${limit}&offset=${offset}&time_range=${timeRange}`,
     );
   }
@@ -31,35 +31,28 @@ export default class UserWrapper {
     playlistId: string,
     publicPlaylist: boolean = true,
   ): Promise<void> {
-    return await this.client.sendPutRequest(
-      `playlists/${playlistId}/followers`,
-      { public: publicPlaylist },
-    );
+    return await this.client.put(`playlists/${playlistId}/followers`, {
+      public: publicPlaylist,
+    });
   }
 
   public async unfollowPlaylist(playlistId: string): Promise<void> {
-    return await this.client.sendDeleteRequest(
-      `playlists/${playlistId}/followers`,
-    );
+    return await this.client.delete(`playlists/${playlistId}/followers`);
   }
 
   public async followArtist(artistId: string): Promise<void> {
-    return await this.client.sendPutRequest(
-      `me/following?type=artist&ids=${artistId}`,
-    );
+    return await this.client.put(`me/following?type=artist&ids=${artistId}`);
   }
 
   public async unfollowArtist(artistId: string): Promise<void> {
-    return await this.client.sendDeleteRequest(
-      `me/following?type=artist&ids=${artistId}`,
-    );
+    return await this.client.delete(`me/following?type=artist&ids=${artistId}`);
   }
 
   public async followedArtists(
     limit: number = 20,
     after?: string,
   ): Promise<{ artists: PaginatedArtists }> {
-    return await this.client.sendGetRequest<{ artists: PaginatedArtists }>(
+    return await this.client.get<{ artists: PaginatedArtists }>(
       `me/following?type=artist&limit=${limit}&after=${after}`,
     );
   }
@@ -68,7 +61,7 @@ export default class UserWrapper {
     type: "artist" | "user",
     ids: string[],
   ): Promise<boolean[]> {
-    return await this.client.sendGetRequest<boolean[]>(
+    return await this.client.get<boolean[]>(
       `me/following/contains?type=${type}&ids=${ids.join(",")}`,
     );
   }

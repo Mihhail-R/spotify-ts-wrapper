@@ -21,16 +21,16 @@ import { Album } from './Album';
 
 // Keep in mind you are also supposed to implement authorization. *This is not covered*
 const httpClient: IHttpClient = {
-	sendGetRequest: async (url: string, options?: any) => {
+	get: async (url: string, options?: any) => {
 		// your implementation
 	},
-	sendPostRequest: async (url: string, options?: any) => {
+	post: async (url: string, options?: any) => {
 		// your implementation
 	},
-	sendPutRequest: async (url: string, options?: any) => {
+	put: async (url: string, options?: any) => {
 		// your implementation
 	},
-	sendDeleteRequest: async (url: string, options?: any) => {
+	delete: async (url: string, options?: any) => {
 		// your implementation
 	},
 };

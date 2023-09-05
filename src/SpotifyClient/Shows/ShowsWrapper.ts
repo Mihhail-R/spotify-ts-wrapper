@@ -7,16 +7,14 @@ export default class ShowsWrapper {
   }
 
   public async getShow(showId: string, market?: string): Promise<Show> {
-    return await this.client.sendGetRequest<Show>(
-      `shows/${showId}?market=${market}`,
-    );
+    return await this.client.get<Show>(`shows/${showId}?market=${market}`);
   }
 
   public async getShows(
     showIds: string[],
     market?: string,
   ): Promise<{ shows: SimplifiedShow[] }> {
-    return await this.client.sendGetRequest<{ shows: SimplifiedShow[] }>(
+    return await this.client.get<{ shows: SimplifiedShow[] }>(
       `shows?ids=${showIds.join(",")}&market=${market}`,
     );
   }
@@ -27,7 +25,7 @@ export default class ShowsWrapper {
     offset: number = 0,
     market?: string,
   ): Promise<PaginatedEpisodes> {
-    return await this.client.sendGetRequest<PaginatedEpisodes>(
+    return await this.client.get<PaginatedEpisodes>(
       `shows/${showId}/episodes?limit=${limit}&offset=${offset}&market=${market}`,
     );
   }

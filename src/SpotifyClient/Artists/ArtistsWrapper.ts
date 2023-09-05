@@ -9,17 +9,17 @@ export default class ArtistsWrapper {
     this.client = client;
   }
   public async getArtist(artistId: string): Promise<Artist> {
-    return await this.client.sendGetRequest<Artist>(`${this.path}/${artistId}`);
+    return await this.client.get<Artist>(`${this.path}/${artistId}`);
   }
 
   public async getArtists(artistIds: string[]): Promise<{ artists: Artist[] }> {
-    return await this.client.sendGetRequest<{ artists: Artist[] }>(
+    return await this.client.get<{ artists: Artist[] }>(
       `${this.path}?ids=${artistIds.join(",")}`,
     );
   }
 
   public async getArtistAlbums(artistId: string): Promise<PaginatedAlbums> {
-    return await this.client.sendGetRequest<PaginatedAlbums>(
+    return await this.client.get<PaginatedAlbums>(
       `${this.path}/${artistId}/albums`,
     );
   }
@@ -28,7 +28,7 @@ export default class ArtistsWrapper {
     artistId: string,
     market?: string,
   ): Promise<{ tracks: Track[] }> {
-    return await this.client.sendGetRequest<{ tracks: Track[] }>(
+    return await this.client.get<{ tracks: Track[] }>(
       `${this.path}/${artistId}/top-tracks?market=${market}`,
     );
   }
@@ -36,7 +36,7 @@ export default class ArtistsWrapper {
   public async getArtistRelatedArtists(
     artistId: string,
   ): Promise<{ artists: Artist[] }> {
-    return await this.client.sendGetRequest<{ artists: Artist[] }>(
+    return await this.client.get<{ artists: Artist[] }>(
       `${this.path}/${artistId}/related-artists`,
     );
   }

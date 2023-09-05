@@ -16,7 +16,7 @@ export default class UserAlbumsWrapper {
     offset: number = 0,
     market?: string,
   ): Promise<PaginatedAlbums> {
-    return this.client.sendGetRequest<PaginatedAlbums>(this.path, {
+    return this.client.get<PaginatedAlbums>(this.path, {
       limit,
       offset,
       market,
@@ -28,7 +28,7 @@ export default class UserAlbumsWrapper {
    * Required authorization scope: user-library-modify
    */
   public async saveAlbumsForUser(ids: string[]): Promise<void> {
-    await this.client.sendPutRequest(this.path, { ids });
+    await this.client.put(this.path, { ids });
   }
 
   /**
@@ -36,7 +36,7 @@ export default class UserAlbumsWrapper {
    * Required authorization scope: user-library-modify
    */
   public async removeAlbumsForUser(ids: string[]): Promise<void> {
-    await this.client.sendDeleteRequest(this.path, { ids });
+    await this.client.delete(this.path, { ids });
   }
 
   /**
@@ -44,7 +44,7 @@ export default class UserAlbumsWrapper {
    * Required authorization scope: user-library-read
    */
   public async checkUsersSavedAlbums(ids: string[]): Promise<boolean[]> {
-    return this.client.sendGetRequest<boolean[]>(`${this.path}/contains`, {
+    return this.client.get<boolean[]>(`${this.path}/contains`, {
       ids,
     });
   }

@@ -11,7 +11,7 @@ export default class AudiobookWrapper {
     audiobookId: string,
     market?: string,
   ): Promise<AudioBook> {
-    return await this.client.sendGetRequest<AudioBook>(
+    return await this.client.get<AudioBook>(
       `${this.path}/${audiobookId}?market=${market}`,
     );
   }
@@ -20,7 +20,7 @@ export default class AudiobookWrapper {
     audiobookIds: string[],
     market?: string,
   ): Promise<{ audiobooks: AudioBook[] }> {
-    return await this.client.sendGetRequest<{ audiobooks: AudioBook[] }>(
+    return await this.client.get<{ audiobooks: AudioBook[] }>(
       `${this.path}?ids=${audiobookIds.join(",")}&market=${market}`,
     );
   }
@@ -31,7 +31,7 @@ export default class AudiobookWrapper {
     limit: number = 20,
     offset: number = 0,
   ): Promise<ChapterItems> {
-    return await this.client.sendGetRequest<ChapterItems>(
+    return await this.client.get<ChapterItems>(
       `${this.path}/${audiobookId}/chapters?limit=${limit}&offset=${offset}&market=${market}`,
     );
   }
@@ -40,7 +40,7 @@ export default class AudiobookWrapper {
     chapterId: string,
     market?: string,
   ): Promise<Chapter> {
-    return await this.client.sendGetRequest<Chapter>(
+    return await this.client.get<Chapter>(
       `/chapters/${chapterId}?market=${market}`,
     );
   }
@@ -49,7 +49,7 @@ export default class AudiobookWrapper {
     chapterIds: string[],
     market?: string,
   ): Promise<{ chapters: Chapter[] }> {
-    return await this.client.sendGetRequest<{ chapters: Chapter[] }>(
+    return await this.client.get<{ chapters: Chapter[] }>(
       `/chapters?ids=${chapterIds.join(",")}&market=${market}`,
     );
   }

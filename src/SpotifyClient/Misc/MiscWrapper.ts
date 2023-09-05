@@ -7,24 +7,22 @@ export default class MiscWrapper {
   }
 
   public async getAvailableGenreSeeds(): Promise<{ genres: string[] }> {
-    return await this.client.sendGetRequest<{ genres: string[] }>(
+    return await this.client.get<{ genres: string[] }>(
       "recommendations/available-genre-seeds",
     );
   }
 
   public async getCategories(): Promise<{ categories: CategoryItems }> {
-    return await this.client.sendGetRequest<{ categories: CategoryItems }>(
+    return await this.client.get<{ categories: CategoryItems }>(
       "browse/categories",
     );
   }
 
   public async getCategory(categoryId: string): Promise<Category> {
-    return await this.client.sendGetRequest<Category>(
-      `browse/categories/${categoryId}`,
-    );
+    return await this.client.get<Category>(`browse/categories/${categoryId}`);
   }
 
   public async getAvailableMarkets(): Promise<{ markets: string[] }> {
-    return await this.client.sendGetRequest<{ markets: string[] }>("markets");
+    return await this.client.get<{ markets: string[] }>("markets");
   }
 }

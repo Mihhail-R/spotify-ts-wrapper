@@ -48,6 +48,7 @@ export default class BaseClient implements IHttpClient {
 					transformResponse: (data) => JSON.parse(data),
 				});
 
+			// @ts-ignore
 			this.client.defaults.headers['Authorization'] = `Bearer ${response.data.access_token}`;
 		} catch (e) {
 			console.error(e);
@@ -56,7 +57,7 @@ export default class BaseClient implements IHttpClient {
 		}
 	}
 
-	public async sendGetRequest<T>(url: string, params: Record<string, unknown>): Promise<T> {
+	public async get<T>(url: string, params: Record<string, unknown>): Promise<T> {
 		const response: AxiosResponse<T> = await this.client.get(url, {
 			params,
 		});
@@ -64,7 +65,7 @@ export default class BaseClient implements IHttpClient {
 		return response.data;
 	}
 
-	public async sendPostRequest<T>(url: string, data: Record<string, unknown>, params?: any): Promise<T> {
+	public async post<T>(url: string, data: Record<string, unknown>, params?: any): Promise<T> {
 		const response: AxiosResponse<T> = await this.client.post(url, data, {
 			params,
 		});
@@ -72,7 +73,7 @@ export default class BaseClient implements IHttpClient {
 		return response.data;
 	}
 
-	public async sendPutRequest<T>(url: string, data: Record<string, unknown>, params?: any): Promise<T> {
+	public async put<T>(url: string, data?: Record<string, unknown>, params?: any): Promise<T> {
 		const response: AxiosResponse<T> = await this.client.put(url, data, {
 			params,
 		});
@@ -80,7 +81,7 @@ export default class BaseClient implements IHttpClient {
 		return response.data;
 	}
 
-	public async sendDeleteRequest<T>(url: string, params?: Record<string, unknown>): Promise<T> {
+	public async delete<T>(url: string, params?: Record<string, unknown>): Promise<T> {
 		const response: AxiosResponse<T> = await this.client.delete(url, {
 			params
 		});
