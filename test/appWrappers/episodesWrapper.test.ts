@@ -1,7 +1,7 @@
-import SearchWrapper from '../src/SpotifyClient/Search/SearchWrapper';
-import SpotifyClient from '../src/SpotifyClient/SpotifyClient';
+import SearchWrapper from '../../src/SpotifyClient/Search/SearchWrapper';
+import SpotifyClient from '../../src/SpotifyClient/SpotifyClient';
 
-import BaseClient from './BaseClient';
+import BaseClient from '../util/BaseClient';
 
 describe('episodesWrapper', () => {
 	const httpClient = new BaseClient();

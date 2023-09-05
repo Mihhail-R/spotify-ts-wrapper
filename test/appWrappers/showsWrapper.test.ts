@@ -1,6 +1,6 @@
-import {SpotifyClient} from "../src";
-import BaseClient from "./BaseClient";
-import ShowsWrapper from "../src/SpotifyClient/Shows/ShowsWrapper";
+import {SpotifyClient} from "../../src";
+import BaseClient from "../util/BaseClient";
+import ShowsWrapper from "../../src/SpotifyClient/Shows/ShowsWrapper";
 
 describe('ShowsWrapper', () => {
 	const httpClient = new BaseClient();

@@ -1,7 +1,7 @@
-import AlbumsWrapper from '../src/SpotifyClient/Albums/AlbumsWrapper';
-import SpotifyClient from '../src/SpotifyClient/SpotifyClient';
+import AlbumsWrapper from '../../src/SpotifyClient/Albums/AlbumsWrapper';
+import SpotifyClient from '../../src/SpotifyClient/SpotifyClient';
 
-import BaseClient from './BaseClient';
+import BaseClient from '../util/BaseClient';
 
 describe('AlbumsWrapper', () => {
 	const httpClient = new BaseClient();
