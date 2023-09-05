@@ -2,6 +2,7 @@ import {
   Copyright,
   ExternalUrls,
   Image,
+  Paginated,
   Restrictions,
   ResumePoint,
 } from "./GeneralTypes";
@@ -49,13 +50,7 @@ export type SimplifiedShow = {
   total_episodes: number;
 };
 
-export type PaginatedShows = {
-  href: string;
-  limit: number;
-  next: string;
-  offset: number;
-  previous: string;
-  total: number;
+export type PaginatedShows = Paginated & {
   items: SimplifiedShow[];
 };
 
@@ -63,13 +58,7 @@ export type Episode = SimplifiedEpisode & {
   show: SimplifiedShow;
 };
 
-export type PaginatedEpisodes = {
-  href: string;
-  limit: number;
-  next: string;
-  offset: number;
-  previous: string;
-  total: number;
+export type PaginatedEpisodes = Paginated & {
   items: SimplifiedEpisode[];
 };
 
@@ -82,13 +71,7 @@ export type SavedEpisode = {
   episode: Episode;
 };
 
-export type EpisodeItems = {
-  href: string;
-  limit: number;
-  next: string;
-  offset: number;
-  previous: string;
-  total: number;
+export type EpisodeItems = Paginated & {
   items: SavedEpisode[];
 };
 
@@ -97,12 +80,6 @@ export type SavedShow = {
   show: SimplifiedShow;
 };
 
-export type ShowItems = {
-  href: string;
-  limit: number;
-  next: string;
-  offset: number;
-  previous: string;
-  total: number;
+export type ShowItems = Paginated & {
   items: SavedShow[];
 };

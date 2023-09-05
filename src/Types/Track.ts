@@ -37,9 +37,9 @@ export type Track = SimplifiedTrack & {
 export type PaginatedTracks = {
   href: string;
   limit: number;
-  next: string;
+  next: string | null;
   offset: number;
-  previous: string;
+  previous: string | null;
   total: number;
   items: SimplifiedTrack[];
 };

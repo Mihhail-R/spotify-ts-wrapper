@@ -1,4 +1,4 @@
-import { ExternalUrls, Followers, Image } from "./GeneralTypes";
+import { ExternalUrls, Followers, Image, Paginated } from "./GeneralTypes";
 
 export type SimplifiedArtist = {
   external_urls: ExternalUrls;
@@ -16,12 +16,6 @@ export type Artist = SimplifiedArtist & {
   images: Image[];
 };
 
-export type PaginatedArtists = {
-  href: string;
-  limit: number;
-  next: string;
-  offset: number;
-  previous: string;
-  total: number;
+export type PaginatedArtists = Paginated & {
   items: Artist[];
 };

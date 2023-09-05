@@ -2,6 +2,7 @@ import {
   Copyright,
   ExternalUrls,
   Image,
+  Paginated,
   Restrictions,
   ResumePoint,
 } from "./GeneralTypes";
@@ -73,12 +74,6 @@ export type Chapter = SimplifiedChapter & {
   audiobook: SimplifiedAudioBook;
 };
 
-export type PaginatedAudioBooks = {
-  href: string;
-  limit: number;
-  next: string;
-  offset: number;
-  previous: string;
-  total: number;
+export type PaginatedAudioBooks = Paginated & {
   items: SimplifiedAudioBook[];
 };

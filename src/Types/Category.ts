@@ -1,4 +1,4 @@
-import { Image } from "./GeneralTypes";
+import { Image, Paginated } from "./GeneralTypes";
 
 export type Category = {
   href: string;
@@ -7,12 +7,6 @@ export type Category = {
   name: string;
 };
 
-export type CategoryItems = {
-  href: string;
+export type CategoryItems = Paginated & {
   items: Category[];
-  limit: number;
-  next: string;
-  offset: number;
-  previous: string;
-  total: number;
 };

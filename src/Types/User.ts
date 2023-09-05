@@ -1,5 +1,5 @@
 import { Artist } from "./Artist";
-import { ExternalUrls, Followers, Image } from "./GeneralTypes";
+import { ExternalUrls, Followers, Image, Paginated } from "./GeneralTypes";
 import { Track } from "./Track";
 
 export type User = {
@@ -27,24 +27,12 @@ export type Me = User & {
 
 export type UserTopItemsTypes = "artists" | "tracks";
 
-export type UserTopArtists = {
-  href: string;
+export type UserTopArtists = Paginated & {
   items: Artist[];
-  limit: number;
-  next: string;
-  offset: number;
-  previous: string;
-  total: number;
 };
 
-export type UserTopTracks = {
-  href: string;
+export type UserTopTracks = Paginated & {
   items: Track[];
-  limit: number;
-  next: string;
-  offset: number;
-  previous: string;
-  total: number;
 };
 
 export type UserTopItems<T extends UserTopItemsTypes> = T extends "artists"

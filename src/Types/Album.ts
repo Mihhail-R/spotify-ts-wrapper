@@ -4,6 +4,7 @@ import {
   ExternalIds,
   ExternalUrls,
   Image,
+  Paginated,
   Restrictions,
 } from "./GeneralTypes";
 import { PaginatedTracks } from "./Track";
@@ -21,19 +22,13 @@ export type SimplifiedAlbum = {
   name: string;
   release_date: string;
   release_date_precision: string;
-  restrictions: Restrictions;
+  restrictions?: Restrictions;
   type: string;
   uri: string;
   external_ids: ExternalIds;
 };
 
-export type PaginatedAlbums = {
-  href: string;
-  limit: number;
-  next: string;
-  offset: number;
-  previous: string;
-  total: number;
+export type PaginatedAlbums = Paginated & {
   items: SimplifiedAlbum[];
 };
 
