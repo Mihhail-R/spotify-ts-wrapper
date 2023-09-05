@@ -9,7 +9,7 @@ export default class EpisodesWrapper {
   }
 
   public async getEpisode(id: string, market?: string): Promise<Episode> {
-    return this.client.sendGetRequest<Episode>(`${this.path}/${id}`, {
+    return this.client.get<Episode>(`${this.path}/${id}`, {
       market,
     });
   }
@@ -18,7 +18,7 @@ export default class EpisodesWrapper {
     ids: string[],
     market?: string,
   ): Promise<{ episodes: Episode[] }> {
-    return this.client.sendGetRequest<{ episodes: Episode[] }>(`${this.path}`, {
+    return this.client.get<{ episodes: Episode[] }>(`${this.path}`, {
       ids: ids.join(","),
       market,
     });

@@ -11,7 +11,7 @@ export default class UserEpisodesWrapper {
     offset?: number,
     market?: string,
   ): Promise<EpisodeItems> {
-    return this.client.sendGetRequest<EpisodeItems>("me/episodes", {
+    return this.client.get<EpisodeItems>("me/episodes", {
       limit,
       offset,
       market,
@@ -19,19 +19,19 @@ export default class UserEpisodesWrapper {
   }
 
   public async saveEpisodes(ids: string[]): Promise<void> {
-    return this.client.sendPutRequest<void>("me/episodes", {
+    return this.client.put<void>("me/episodes", {
       ids: ids.join(","),
     });
   }
 
   public async removeSavedEpisodes(ids: string[]): Promise<void> {
-    return this.client.sendDeleteRequest<void>("me/episodes", {
+    return this.client.delete<void>("me/episodes", {
       ids: ids.join(","),
     });
   }
 
   public async checkSavedEpisodes(ids: string[]): Promise<boolean[]> {
-    return this.client.sendGetRequest<boolean[]>("me/episodes/contains", {
+    return this.client.get<boolean[]>("me/episodes/contains", {
       ids: ids.join(","),
     });
   }

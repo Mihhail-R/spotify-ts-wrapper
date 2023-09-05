@@ -11,26 +11,23 @@ export default class UserTracksWrapper {
     offset: number = 0,
     market?: string,
   ): Promise<UserSavedTracks> {
-    return await this.client.sendGetRequest<UserSavedTracks>(
+    return await this.client.get<UserSavedTracks>(
       `me/tracks?limit=${limit}&offset=${offset}&market=${market}`,
     );
   }
 
   public async saveTracks(ids: string[]): Promise<void> {
-    return await this.client.sendPutRequest(`me/tracks?ids=${ids.join(",")}`, {
+    return await this.client.put(`me/tracks?ids=${ids.join(",")}`, {
       ids,
     });
   }
 
   public async removeSavedTracks(ids: string[]): Promise<void> {
-    return await this.client.sendDeleteRequest(
-      `me/tracks?ids=${ids.join(",")}`,
-      { ids },
-    );
+    return await this.client.delete(`me/tracks?ids=${ids.join(",")}`, { ids });
   }
 
   public async checkSavedTracks(ids: string[]): Promise<boolean[]> {
-    return await this.client.sendGetRequest<boolean[]>(
+    return await this.client.get<boolean[]>(
       `me/tracks/contains?ids=${ids.join(",")}`,
     );
   }

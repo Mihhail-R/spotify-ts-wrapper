@@ -15,7 +15,7 @@ export default class AlbumsWrapper {
    * @param market An ISO 3166-1 alpha-2 country code.
    */
   public async getAlbum(id: string, market?: string): Promise<Album> {
-    return await this.client.sendGetRequest<Album>(`${this.path}/${id}`, {
+    return await this.client.get<Album>(`${this.path}/${id}`, {
       market,
     });
   }
@@ -29,7 +29,7 @@ export default class AlbumsWrapper {
     ids: string[],
     market?: string,
   ): Promise<{ albums: Album[] }> {
-    return this.client.sendGetRequest<{ albums: Album[] }>(this.path, {
+    return this.client.get<{ albums: Album[] }>(this.path, {
       ids: ids.join(","),
       market,
     });
@@ -48,14 +48,11 @@ export default class AlbumsWrapper {
     offset: number = 0,
     market?: string,
   ): Promise<PaginatedTracks> {
-    return this.client.sendGetRequest<PaginatedTracks>(
-      `${this.path}/${id}/tracks`,
-      {
-        limit,
-        offset,
-        market,
-      },
-    );
+    return this.client.get<PaginatedTracks>(`${this.path}/${id}/tracks`, {
+      limit,
+      offset,
+      market,
+    });
   }
 
   /**
@@ -69,13 +66,10 @@ export default class AlbumsWrapper {
     offset: number = 0,
     country?: string,
   ): Promise<{ albums: PaginatedAlbums }> {
-    return this.client.sendGetRequest<{ albums: PaginatedAlbums }>(
-      "browse/new-releases",
-      {
-        limit,
-        offset,
-        country,
-      },
-    );
+    return this.client.get<{ albums: PaginatedAlbums }>("browse/new-releases", {
+      limit,
+      offset,
+      country,
+    });
   }
 }

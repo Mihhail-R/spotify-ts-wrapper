@@ -10,23 +10,20 @@ export default class UserAudiobookWrapper {
     limit: number = 10,
     offset: number = 0,
   ): Promise<PaginatedAudioBooks> {
-    return await this.client.sendGetRequest<PaginatedAudioBooks>(
-      "me/audiobooks",
-      {
-        limit: limit,
-        offset: offset,
-      },
-    );
+    return await this.client.get<PaginatedAudioBooks>("me/audiobooks", {
+      limit: limit,
+      offset: offset,
+    });
   }
 
   public async saveUserAudioBook(audiobookIds: string[]): Promise<void> {
-    return await this.client.sendPutRequest<void>("me/audiobooks", {
+    return await this.client.put<void>("me/audiobooks", {
       audiobookIds,
     });
   }
 
   public async removeUserAudioBook(audiobookIds: string[]): Promise<void> {
-    return await this.client.sendDeleteRequest<void>("me/audiobooks", {
+    return await this.client.delete<void>("me/audiobooks", {
       audiobookIds,
     });
   }
@@ -34,11 +31,8 @@ export default class UserAudiobookWrapper {
   public async checkUserSavedAudioBooks(
     audiobookIds: string[],
   ): Promise<boolean[]> {
-    return await this.client.sendGetRequest<boolean[]>(
-      "me/audiobooks/contains",
-      {
-        audiobookIds,
-      },
-    );
+    return await this.client.get<boolean[]>("me/audiobooks/contains", {
+      audiobookIds,
+    });
   }
 }

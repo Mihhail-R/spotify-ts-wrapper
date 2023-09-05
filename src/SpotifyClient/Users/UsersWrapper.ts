@@ -7,14 +7,14 @@ export default class UsersWrapper {
   }
 
   public async getUsersProfile(userId: string): Promise<User> {
-    return await this.client.sendGetRequest<User>(`users/${userId}`);
+    return await this.client.get<User>(`users/${userId}`);
   }
 
   public async checkIfUsersFollowPlaylist(
     playlistId: string,
     ids: string[],
   ): Promise<boolean[]> {
-    return await this.client.sendGetRequest<boolean[]>(
+    return await this.client.get<boolean[]>(
       `playlists/${playlistId}/followers/contains?ids=${ids.join(",")}`,
     );
   }

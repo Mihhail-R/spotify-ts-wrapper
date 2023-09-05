@@ -19,12 +19,12 @@ export default class SearchWrapper {
       .join(",");
 
     if (include_external) {
-      return await this.client.sendGetRequest<Search<T>>(
+      return await this.client.get<Search<T>>(
         `search?q=${q}&type=${types}&market=${market}&offset=${offset}&limit=${limit}&include_external=audio`,
       );
     }
 
-    return await this.client.sendGetRequest<Search<T>>(
+    return await this.client.get<Search<T>>(
       `search?q=${q}&type=${types}&market=${market}&offset=${offset}&limit=${limit}`,
     );
   }
