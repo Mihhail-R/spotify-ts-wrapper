@@ -1,7 +1,7 @@
 import axios, {Axios, AxiosResponse} from "axios";
 
-import IHttpClient from "../src/SpotifyClient/IHttpClient";
-import {ClientCredentials} from "../src/Types/ClientCredentials";
+import IHttpClient from "../../src/SpotifyClient/IHttpClient";
+import {ClientCredentials} from "../../src/Types/ClientCredentials";
 
 import {SPOTIFY_AUTH_URL, SPOTIFY_CLIENT_ID, SPOTIFY_SECRET} from "./config";
 

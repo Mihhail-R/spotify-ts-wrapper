@@ -1,6 +1,6 @@
-import {SpotifyClient} from "../src";
-import BaseClient from "./BaseClient";
-import SearchWrapper from "../src/SpotifyClient/Search/SearchWrapper";
+import {SpotifyClient} from "../../src";
+import BaseClient from "../util/BaseClient";
+import SearchWrapper from "../../src/SpotifyClient/Search/SearchWrapper";
 
 describe('SearchWrapper', () => {
 	const httpClient = new BaseClient();
@@ -23,6 +23,14 @@ describe('SearchWrapper', () => {
 
 	it('Should get artists from search', async () => {
 		const result = await searchWrapper.search<['artists']>('Mental Cruelty', ['artists'], 'EE');
+
+		expect(result.artists.items[0].name).toStrictEqual('Mental Cruelty');
+	});
+
+	it('Should get artists from search, with external included', async () => {
+		const result = await searchWrapper.search<['artists']>(
+			'Mental Cruelty', ['artists'], 'EE', 0, 20, true,
+		);
 
 		expect(result.artists.items[0].name).toStrictEqual('Mental Cruelty');
 	})

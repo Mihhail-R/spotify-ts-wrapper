@@ -11,7 +11,7 @@ export default class UserAlbumsWrapper {
    * Get a list of the albums saved in the current Spotify user’s ‘Your Music’ library.
    * Required authorization scope: user-library-read
    */
-  public async getUsersSavedAlbums(
+  public async getAlbums(
     limit: number = 20,
     offset: number = 0,
     market?: string,
@@ -27,7 +27,7 @@ export default class UserAlbumsWrapper {
    * Save one or more albums to the current user’s “Your Music” library.
    * Required authorization scope: user-library-modify
    */
-  public async saveAlbumsForUser(ids: string[]): Promise<void> {
+  public async saveAlbums(ids: string[]): Promise<void> {
     await this.client.put(this.path, { ids });
   }
 
@@ -35,7 +35,7 @@ export default class UserAlbumsWrapper {
    * Remove one or more albums from the current user’s “Your Music” library.
    * Required authorization scope: user-library-modify
    */
-  public async removeAlbumsForUser(ids: string[]): Promise<void> {
+  public async removeAlbums(ids: string[]): Promise<void> {
     await this.client.delete(this.path, { ids });
   }
 
@@ -43,7 +43,7 @@ export default class UserAlbumsWrapper {
    * Check if one or more albums is already saved in the current Spotify user’s “Your Music” library.
    * Required authorization scope: user-library-read
    */
-  public async checkUsersSavedAlbums(ids: string[]): Promise<boolean[]> {
+  public async checkSavedAlbums(ids: string[]): Promise<boolean[]> {
     return this.client.get<boolean[]>(`${this.path}/contains`, {
       ids,
     });

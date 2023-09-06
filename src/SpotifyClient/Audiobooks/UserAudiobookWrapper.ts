@@ -6,7 +6,7 @@ export default class UserAudiobookWrapper {
     this.client = client;
   }
 
-  public async getUsersSavedAudioBooks(
+  public async getAudiobooks(
     limit: number = 10,
     offset: number = 0,
   ): Promise<PaginatedAudioBooks> {
@@ -16,21 +16,19 @@ export default class UserAudiobookWrapper {
     });
   }
 
-  public async saveUserAudioBook(audiobookIds: string[]): Promise<void> {
+  public async saveAudiobook(audiobookIds: string[]): Promise<void> {
     return await this.client.put<void>("me/audiobooks", {
       audiobookIds,
     });
   }
 
-  public async removeUserAudioBook(audiobookIds: string[]): Promise<void> {
+  public async removeAudiobook(audiobookIds: string[]): Promise<void> {
     return await this.client.delete<void>("me/audiobooks", {
       audiobookIds,
     });
   }
 
-  public async checkUserSavedAudioBooks(
-    audiobookIds: string[],
-  ): Promise<boolean[]> {
+  public async savedAudiobooks(audiobookIds: string[]): Promise<boolean[]> {
     return await this.client.get<boolean[]>("me/audiobooks/contains", {
       audiobookIds,
     });

@@ -1,7 +1,7 @@
 export type Image = {
-  height: number;
+  height: number | null;
   url: string;
-  width: number;
+  width: number | null;
 };
 
 export type ExternalUrls = {
@@ -26,7 +26,7 @@ export type Copyright = {
 };
 
 export type Followers = {
-  href: string;
+  href: string | null;
   total: number;
 };
 
@@ -39,4 +39,13 @@ export type ExternalIds = {
 export type ResumePoint = {
   fully_played: boolean;
   resume_position_ms: number;
+};
+
+export type Paginated = {
+  href: string;
+  limit: number;
+  next: string | null;
+  offset: number;
+  previous: string | null;
+  total: number;
 };

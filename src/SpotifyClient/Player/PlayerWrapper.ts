@@ -32,8 +32,8 @@ export default class PlayerWrapper {
     });
   }
 
-  public async getAvailableDevices(): Promise<{ devices: Device }> {
-    return await this.client.get<{ devices: Device }>("me/player/devices");
+  public async getAvailableDevices(): Promise<{ devices: Device[] }> {
+    return await this.client.get<{ devices: Device[] }>("me/player/devices");
   }
 
   public async getCurrentlyPlaying(
@@ -46,8 +46,8 @@ export default class PlayerWrapper {
     });
   }
 
-  public async startResumePlayback(input: StartResumePlayback): Promise<void> {
-    if (input.device_id) {
+  public async startResumePlayback(input?: StartResumePlayback): Promise<void> {
+    if (input?.device_id) {
       const { device_id, ...rest } = input;
 
       await this.client.put(`me/player/play?device_id=${device_id}`, rest);

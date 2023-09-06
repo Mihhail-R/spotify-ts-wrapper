@@ -1,9 +1,10 @@
-import { Album, SimplifiedAlbum } from "./Album";
+import { SimplifiedAlbum } from "./Album";
 import { Artist, SimplifiedArtist } from "./Artist";
 import {
   ExternalIds,
   ExternalUrls,
   LinkedFrom,
+  Paginated,
   Restrictions,
 } from "./GeneralTypes";
 
@@ -29,7 +30,7 @@ export type SimplifiedTrack = {
 
 export type Track = SimplifiedTrack & {
   artists: Artist[];
-  album: Album;
+  album: SimplifiedAlbum;
   popularity: number;
   external_ids: ExternalIds;
 };
@@ -37,25 +38,19 @@ export type Track = SimplifiedTrack & {
 export type PaginatedTracks = {
   href: string;
   limit: number;
-  next: string;
+  next: string | null;
   offset: number;
-  previous: string;
+  previous: string | null;
   total: number;
   items: SimplifiedTrack[];
 };
 
 export type SavedTrack = {
   added_at: string;
-  track: SimplifiedTrack;
+  track: Track;
 };
 
-export type UserSavedTracks = {
-  href: string;
-  limit: number;
-  next: string;
-  offset: number;
-  previous: string;
-  total: number;
+export type UserSavedTracks = Paginated & {
   items: SavedTrack[];
 };
 

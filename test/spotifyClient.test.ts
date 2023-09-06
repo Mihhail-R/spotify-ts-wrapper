@@ -1,4 +1,4 @@
-import BaseClient from "./BaseClient";
+import BaseClient from "./util/BaseClient";
 import {SpotifyClient} from "../src";
 import AlbumsWrapper from "../src/SpotifyClient/Albums/AlbumsWrapper";
 import PlayerWrapper from "../src/SpotifyClient/Player/PlayerWrapper";

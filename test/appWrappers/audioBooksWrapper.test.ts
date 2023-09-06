@@ -1,6 +1,6 @@
-import {SpotifyClient} from "../src";
-import BaseClient from "./BaseClient";
-import AudiobookWrapper from "../src/SpotifyClient/Audiobooks/AudiobookWrapper";
+import {SpotifyClient} from "../../src";
+import BaseClient from "../util/BaseClient";
+import AudiobookWrapper from "../../src/SpotifyClient/Audiobooks/AudiobookWrapper";
 
 describe('AudioBookWrapper', () => {
 	const httpClient = new BaseClient();
