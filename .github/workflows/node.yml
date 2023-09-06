@@ -19,6 +19,8 @@ jobs:
               run: npm run lint
             - name: Run tests
               run: npm run test
+            - name: Jest coverage report
+              uses: ArtiomTr/jest-coverage-report-action@v2.2.4
             - name: Build project
               run: npm run build
             - name: Upload build artifact
