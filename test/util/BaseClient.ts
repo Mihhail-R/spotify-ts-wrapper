@@ -62,8 +62,6 @@ export default class BaseClient implements IHttpClient {
 			params,
 		});
 
-		console.log(response);
-
 		return response.data;
 	}
 
