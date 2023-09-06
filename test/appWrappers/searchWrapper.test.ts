@@ -25,5 +25,13 @@ describe('SearchWrapper', () => {
 		const result = await searchWrapper.search<['artists']>('Mental Cruelty', ['artists'], 'EE');
 
 		expect(result.artists.items[0].name).toStrictEqual('Mental Cruelty');
+	});
+
+	it('Should get artists from search, with external included', async () => {
+		const result = await searchWrapper.search<['artists']>(
+			'Mental Cruelty', ['artists'], 'EE', 0, 20, true,
+		);
+
+		expect(result.artists.items[0].name).toStrictEqual('Mental Cruelty');
 	})
 });
