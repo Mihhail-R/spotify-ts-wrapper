@@ -1,27 +1,28 @@
-import SearchWrapper from '../../src/SpotifyClient/Search/SearchWrapper';
 import SpotifyClient from '../../src/SpotifyClient/SpotifyClient';
 
 import BaseClient from '../util/BaseClient';
+import EpisodesWrapper from "../../src/SpotifyClient/Episodes/EpisodesWrapper";
 
 describe('episodesWrapper', () => {
 	const httpClient = new BaseClient();
 	let spotifyClient: SpotifyClient;
-	let searchWrapper: SearchWrapper;
+	let episodesWrapper: EpisodesWrapper;
 
 	beforeAll(async () => {
 		await httpClient.setAccessToken();
 		spotifyClient = new SpotifyClient(httpClient);
-		searchWrapper = spotifyClient.getSearchWrapper();
+		episodesWrapper = spotifyClient.getEpisodesWrapper();
 	});
 
-	it('Should perform search', async () => {
-		const result = await searchWrapper.search<['artists', 'albums']>(
-			'MentalCruelty',
-			['artists', 'albums'],
-			'EE',
-		);
+	it('Should get episode', async () => {
+		const result = await episodesWrapper.getEpisode('0Q86acNRm6V9GYx55SXKwf', 'ES');
 
-		expect(result).toBeDefined();
-		expect(result.albums.href).toBeDefined();
+		expect(result.id).toStrictEqual('0Q86acNRm6V9GYx55SXKwf');
+	});
+
+	it('Should get multiple episodes', async () => {
+		const result = await episodesWrapper.getEpisodes(['77o6BIVlYM3msb4MMIL1jH', '0Q86acNRm6V9GYx55SXKwf'], 'ES');
+
+		expect(result.episodes.length).toStrictEqual(2);
 	});
 });
