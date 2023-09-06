@@ -29,6 +29,14 @@ describe('UserWrapper', () => {
 		expect(result.items[0].id).toStrictEqual("1");
 	});
 
+	it('Should get top tracks', async () => {
+		axiosMock.get.mockImplementationOnce(() => Promise.resolve(userTopItemsMock));
+
+		const result = await spotifyClient.getTopItems("tracks");
+
+		expect(result.items[0].id).toStrictEqual("1");
+	});
+
 	it('Should get followed artists', async () => {
 		axiosMock.get.mockImplementationOnce(() => Promise.resolve(getFollowedArtistsMock));
 
