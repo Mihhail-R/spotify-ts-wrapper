@@ -29,7 +29,6 @@ jobs:
               uses: ArtiomTr/jest-coverage-report-action@v2.2.4
               with:
                   output: comment, report-markdown
-                  coverage-file: ./coverage/coverage-final.json
                   test-script: npm run test
             - name: Build project
               run: npm run build
