@@ -1,10 +1,18 @@
 name: node
-on: [push]
+on:
+    push:
+        branches: [ "main" ]
+    pull_request:
+        branches: [ "main" ]
 env:
-  SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
-  SPOTIFY_SECRET: ${{ secrets.SPOTIFY_SECRET }}
+    SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
+    SPOTIFY_SECRET: ${{ secrets.SPOTIFY_SECRET }}
 jobs:
     node:
+        permissions:
+            checks: write
+            pull-requests: write
+            contents: write
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v3
@@ -17,8 +25,11 @@ jobs:
               run: npm ci
             - name: Run linter
               run: npm run lint
-            - name: Run tests
-              run: npm run test
+            - name: Jest coverage report
+              uses: ArtiomTr/jest-coverage-report-action@v2.2.4
+              with:
+                  output: comment, report-markdown
+                  test-script: npm run test
             - name: Build project
               run: npm run build
             - name: Upload build artifact
