@@ -31,7 +31,7 @@ jobs:
                   output: comment, report-markdown
                   test-script: npm run test
             - name: Build project
-              run: npm run build
+              run: npm install --omit-dev && npm run build
             - name: Upload build artifact
               uses: actions/upload-artifact@v3
               with:
