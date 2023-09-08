@@ -1,3 +1,5 @@
+import { fetch } from "undici";
+
 import IHttpClient from "../SpotifyClient/IHttpClient";
 import { ClientCredentials } from "../Types/ClientCredentials";
 
@@ -5,12 +7,12 @@ import ClientConfig from "./ClientConfig";
 
 export default class HttpClient implements IHttpClient {
   public baseUrl: string;
-  public authenticationUrl: string;
+  public authenticationUrl?: string;
 
   // private properties
-  private clientId: string;
-  private clientSecret: string;
-  private accessToken: string;
+  private clientId?: string;
+  private clientSecret?: string;
+  private accessToken?: string;
 
   constructor({
     baseUrl,
@@ -23,8 +25,13 @@ export default class HttpClient implements IHttpClient {
     this.clientId = clientId;
     this.clientSecret = clientSecret || "";
   }
+
   public async authorizeApp(): Promise<void> {
-    const response = await fetch(this.authenticationUrl, {
+    if (!this.authenticationUrl) {
+      return;
+    }
+
+    const result = await fetch(this.authenticationUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
@@ -33,95 +40,102 @@ export default class HttpClient implements IHttpClient {
         ).toString("base64")}`,
       },
       body: "grant_type=client_credentials",
-    }).then((response) => response.json() as Promise<ClientCredentials>);
+    });
 
-    this.accessToken = response.access_token;
+    const clientCredentials = (await result.json()) as ClientCredentials;
+
+    this.accessToken = clientCredentials.access_token;
   }
 
-  private createBaseUrl(endpoint: string): URL {
+  private createUrl(endpoint: string): URL {
     return new URL(endpoint, this.baseUrl);
   }
 
-  public async get<T>(endpoint: string, params?: any): Promise<T> {
-    const url = this.createBaseUrl(endpoint);
+  private parseParams(params: any): URLSearchParams {
+    const urlSearchParams = new URLSearchParams();
 
     if (params) {
       Object.keys(params).forEach((key) =>
-        url.searchParams.append(key, params[key]),
+        urlSearchParams.append(key, params[key]),
       );
     }
 
-    return fetch(url.toString(), {
+    return urlSearchParams;
+  }
+
+  public async get<T>(endpoint: string, params?: any): Promise<T> {
+    const baseUrl = this.createUrl(endpoint);
+    let url = baseUrl.toString();
+
+    if (params) {
+      const urlSearchParams = this.parseParams(params);
+      url += `?${urlSearchParams.toString()}`;
+    }
+
+    const response = await fetch(url, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${this.accessToken}`,
       },
-    }).then((response) => response.json() as Promise<T>);
+    });
+
+    return (await response.json()) as T;
   }
-  public async post<T>(endpoint: string, data?: any, params?: any): Promise<T> {
-    const url = this.createBaseUrl(endpoint);
+
+  public async post(endpoint: string, data?: any, params?: any): Promise<void> {
+    const baseUrl = this.createUrl(endpoint);
+    let url = baseUrl.toString();
 
     if (params) {
-      Object.keys(params).forEach((key) =>
-        url.searchParams.append(key, params[key]),
-      );
+      const urlSearchParams = this.parseParams(params);
+      url += `?${urlSearchParams.toString()}`;
     }
 
-    if (data) {
-      Object.keys(data).forEach((key) =>
-        url.searchParams.append(key, data[key]),
-      );
-    }
-
-    return fetch(url.toString(), {
+    await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${this.accessToken}`,
       },
-      body: JSON.stringify(data),
-    }).then((response) => response.json() as Promise<T>);
+      body: data ? JSON.stringify(data) : undefined,
+    });
   }
-  public async put<T>(endpoint: string, data?: any, params?: any): Promise<T> {
-    const url = this.createBaseUrl(endpoint);
+
+  public async put(endpoint: string, data?: any, params?: any): Promise<void> {
+    const baseUrl = this.createUrl(endpoint);
+    let url = baseUrl.toString();
 
     if (params) {
-      Object.keys(params).forEach((key) =>
-        url.searchParams.append(key, params[key]),
-      );
+      const urlSearchParams = this.parseParams(params);
+      url += `?${urlSearchParams.toString()}`;
     }
 
-    if (data) {
-      Object.keys(data).forEach((key) =>
-        url.searchParams.append(key, data[key]),
-      );
-    }
-
-    return fetch(url.toString(), {
+    await fetch(url, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${this.accessToken}`,
       },
-      body: JSON.stringify(data),
-    }).then((response) => response.json() as Promise<T>);
+      body: data ? JSON.stringify(data) : undefined,
+    });
   }
-  public async delete<T>(endpoint: string, params?: any): Promise<T> {
-    const url = this.createBaseUrl(endpoint);
+
+  public async delete(endpoint: string, params?: any): Promise<void> {
+    const baseUrl = this.createUrl(endpoint);
+    let url = baseUrl.toString();
 
     if (params) {
-      Object.keys(params).forEach((key) =>
-        url.searchParams.append(key, params[key]),
-      );
+      const urlSearchParams = this.parseParams(params);
+      url += `?${urlSearchParams.toString()}`;
     }
 
-    return fetch(url.toString(), {
+    await fetch(url, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${this.accessToken}`,
       },
-    }).then((response) => response.json() as Promise<T>);
+    });
   }
 }

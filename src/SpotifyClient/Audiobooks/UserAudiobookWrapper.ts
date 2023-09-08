@@ -17,13 +17,13 @@ export default class UserAudiobookWrapper {
   }
 
   public async saveAudiobook(audiobookIds: string[]): Promise<void> {
-    return await this.client.put<void>("me/audiobooks", {
+    return await this.client.put("me/audiobooks", {
       audiobookIds,
     });
   }
 
   public async removeAudiobook(audiobookIds: string[]): Promise<void> {
-    return await this.client.delete<void>("me/audiobooks", {
+    return await this.client.delete("me/audiobooks", {
       audiobookIds,
     });
   }

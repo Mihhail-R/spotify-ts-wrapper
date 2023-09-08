@@ -19,13 +19,13 @@ export default class UserEpisodesWrapper {
   }
 
   public async saveEpisodes(ids: string[]): Promise<void> {
-    return this.client.put<void>("me/episodes", {
+    return this.client.put("me/episodes", {
       ids: ids.join(","),
     });
   }
 
   public async removeSavedEpisodes(ids: string[]): Promise<void> {
-    return this.client.delete<void>("me/episodes", {
+    return this.client.delete("me/episodes", {
       ids: ids.join(","),
     });
   }
