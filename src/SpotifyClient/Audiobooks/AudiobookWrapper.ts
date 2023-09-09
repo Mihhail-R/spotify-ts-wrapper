@@ -11,18 +11,19 @@ export default class AudiobookWrapper {
     audiobookId: string,
     market?: string,
   ): Promise<AudioBook> {
-    return await this.client.get<AudioBook>(
-      `${this.path}/${audiobookId}?market=${market}`,
-    );
+    return await this.client.get<AudioBook>(`${this.path}/${audiobookId}`, {
+      market,
+    });
   }
 
   public async getAudiobooks(
     audiobookIds: string[],
     market?: string,
   ): Promise<{ audiobooks: AudioBook[] }> {
-    return await this.client.get<{ audiobooks: AudioBook[] }>(
-      `${this.path}?ids=${audiobookIds.join(",")}&market=${market}`,
-    );
+    return await this.client.get<{ audiobooks: AudioBook[] }>(`${this.path}`, {
+      ids: audiobookIds.join(","),
+      market,
+    });
   }
 
   public async getAudioBookChapters(
@@ -32,7 +33,12 @@ export default class AudiobookWrapper {
     offset: number = 0,
   ): Promise<ChapterItems> {
     return await this.client.get<ChapterItems>(
-      `${this.path}/${audiobookId}/chapters?limit=${limit}&offset=${offset}&market=${market}`,
+      `${this.path}/${audiobookId}/chapters`,
+      {
+        market,
+        limit,
+        offset,
+      },
     );
   }
 
@@ -40,17 +46,18 @@ export default class AudiobookWrapper {
     chapterId: string,
     market?: string,
   ): Promise<Chapter> {
-    return await this.client.get<Chapter>(
-      `/chapters/${chapterId}?market=${market}`,
-    );
+    return await this.client.get<Chapter>(`/chapters/${chapterId}`, {
+      market,
+    });
   }
 
   public async getChapters(
     chapterIds: string[],
     market?: string,
   ): Promise<{ chapters: Chapter[] }> {
-    return await this.client.get<{ chapters: Chapter[] }>(
-      `/chapters?ids=${chapterIds.join(",")}&market=${market}`,
-    );
+    return await this.client.get<{ chapters: Chapter[] }>("/chapters", {
+      ids: chapterIds.join(","),
+      market,
+    });
   }
 }

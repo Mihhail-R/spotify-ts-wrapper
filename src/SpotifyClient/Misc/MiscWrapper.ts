@@ -12,14 +12,32 @@ export default class MiscWrapper {
     );
   }
 
-  public async getCategories(): Promise<{ categories: CategoryItems }> {
+  public async getCategories(
+    country?: string,
+    locale?: string,
+    limit = 20,
+    offset = 0,
+  ): Promise<{ categories: CategoryItems }> {
     return await this.client.get<{ categories: CategoryItems }>(
       "browse/categories",
+      {
+        country,
+        locale,
+        limit,
+        offset,
+      },
     );
   }
 
-  public async getCategory(categoryId: string): Promise<Category> {
-    return await this.client.get<Category>(`browse/categories/${categoryId}`);
+  public async getCategory(
+    categoryId: string,
+    country?: string,
+    locale?: string,
+  ): Promise<Category> {
+    return await this.client.get<Category>(`browse/categories/${categoryId}`, {
+      country,
+      locale,
+    });
   }
 
   public async getAvailableMarkets(): Promise<{ markets: string[] }> {

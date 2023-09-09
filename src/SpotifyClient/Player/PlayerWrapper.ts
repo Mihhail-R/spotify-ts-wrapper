@@ -47,93 +47,66 @@ export default class PlayerWrapper {
   }
 
   public async startResumePlayback(input?: StartResumePlayback): Promise<void> {
-    if (input?.device_id) {
-      const { device_id, ...rest } = input;
-
-      await this.client.put(`me/player/play?device_id=${device_id}`, rest);
-    } else {
-      await this.client.put("me/player/play", input);
-    }
+    await this.client.put("me/player/play", input);
   }
 
   public async pausePlayback(deviceId?: string): Promise<void> {
-    if (deviceId) {
-      await this.client.put(`me/player/pause?device_id=${deviceId}`);
-    } else {
-      await this.client.put("me/player/pause");
-    }
+    await this.client.put("me/player/pause", {
+      device_id: deviceId,
+    });
   }
 
   public async skipToNext(deviceId?: string): Promise<void> {
-    if (deviceId) {
-      await this.client.post(`me/player/next?device_id=${deviceId}`);
-    } else {
-      await this.client.post("me/player/next");
-    }
+    await this.client.post("me/player/next", {
+      device_id: deviceId,
+    });
   }
 
   public async skipToPrevious(deviceId?: string): Promise<void> {
-    if (deviceId) {
-      await this.client.post(`me/player/previous?device_id=${deviceId}`);
-    } else {
-      await this.client.post("me/player/previous");
-    }
+    await this.client.post("me/player/previous", {
+      device_id: deviceId,
+    });
   }
 
   public async seek(positionMs: number, deviceId?: string): Promise<void> {
-    if (deviceId) {
-      await this.client.put(
-        `me/player/seek?position_ms=${positionMs}&device_id=${deviceId}`,
-      );
-    } else {
-      await this.client.put(`me/player/seek?position_ms=${positionMs}`);
-    }
+    await this.client.put("me/player/seek", {
+      position_ms: positionMs,
+      device_id: deviceId,
+    });
   }
 
   public async setRepeatState(
     state: "track" | "context" | "off",
     deviceId?: string,
   ): Promise<void> {
-    if (deviceId) {
-      await this.client.put(
-        `me/player/repeat?state=${state}&device_id=${deviceId}`,
-      );
-    } else {
-      await this.client.put(`me/player/repeat?state=${state}`);
-    }
+    await this.client.put("me/player/repeat", {
+      state,
+      device_id: deviceId,
+    });
   }
 
   public async setVolume(
     volumePercent: number,
     deviceId?: string,
   ): Promise<void> {
-    if (deviceId) {
-      await this.client.put(
-        `me/player/volume?volume_percent=${volumePercent}&device_id=${deviceId}`,
-      );
-    } else {
-      await this.client.put(`me/player/volume?volume_percent=${volumePercent}`);
-    }
+    await this.client.put("me/player/volume", {
+      volume_percent: volumePercent,
+      device_id: deviceId,
+    });
   }
 
   public async toggleShuffle(state: boolean, deviceId?: string): Promise<void> {
-    if (deviceId) {
-      await this.client.put(
-        `me/player/shuffle?state=${state}&device_id=${deviceId}`,
-      );
-    } else {
-      await this.client.put(`me/player/shuffle?state=${state}`);
-    }
+    await this.client.put("me/player/shuffle", {
+      state,
+      device_id: deviceId,
+    });
   }
 
   public async addToQueue(uri: string, deviceId?: string): Promise<void> {
-    if (deviceId) {
-      await this.client.post(
-        `me/player/queue?uri=${uri}&device_id=${deviceId}`,
-      );
-    } else {
-      await this.client.post(`me/player/queue?uri=${uri}`);
-    }
+    await this.client.post("me/player/queue", {
+      uri,
+      device_id: deviceId,
+    });
   }
 
   public async getRecentlyPlayed(
