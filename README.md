@@ -70,6 +70,4 @@ const album: Album = await spotifyClient.albums.getAlbum('albumId');
 
 -   [ ] Add playlist wrapper
     -   ref: https://developer.spotify.com/documentation/web-api/reference/get-playlist/
--   [ ] Add recommendation wrapper
-    -   ref: https://developer.spotify.com/documentation/web-api/reference/get-recommendations
 -   [ ] Split SpotifyClient into two classes, one for user and one for app

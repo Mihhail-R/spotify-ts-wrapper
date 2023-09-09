@@ -1,4 +1,10 @@
-import { AudioAnalysis, AudioFeatures, Track } from "../../Types/Track";
+import {
+  AudioAnalysis,
+  AudioFeatures,
+  Track,
+  TrackRecommendationInput,
+  TrackRecommendations,
+} from "../../Types/Track";
 import IHttpClient from "../IHttpClient";
 
 export default class TracksWrapper {
@@ -33,5 +39,35 @@ export default class TracksWrapper {
 
   public async getAudioAnalysis(trackId: string): Promise<AudioAnalysis> {
     return await this.client.get<AudioAnalysis>(`audio-analysis/${trackId}`);
+  }
+
+  public async getRecommendations(
+    input: TrackRecommendationInput,
+  ): Promise<TrackRecommendations> {
+    if (
+      input.seed_tracks.length +
+        input.seed_artists.length +
+        input.seed_genres.length >
+      5
+    ) {
+      throw new Error(
+        "The total number of seed tracks, artists and genres cannot be greater than 5",
+      );
+    }
+
+    const buildQuery = (input: TrackRecommendationInput): string => {
+      const query = Object.entries(input).map(([key, value]) => {
+        if (Array.isArray(value)) {
+          return `${key}=${value.join(",")}`;
+        }
+
+        return `${key}=${value}`;
+      });
+      return query.join("&");
+    };
+
+    return await this.client.get<TrackRecommendations>(
+      `recommendations?${buildQuery(input)}`,
+    );
   }
 }

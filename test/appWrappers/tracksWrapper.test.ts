@@ -47,4 +47,24 @@ describe('TracksWrapper', () => {
 
 		expect(result.audio_features.length).toStrictEqual(1);
 	});
+
+	it('Should get recommendations', async () => {
+		const result = await tracksWrapper.getRecommendations({
+			seed_artists: ['69lt02nubfNbPdrvH4tJxx', '7F9ZL4TJNr8AoU0UUQX8ih'],
+			seed_genres: ['heavy-metal', 'death-metal'],
+			seed_tracks: ['74p4l00JKebWPlAfpqi9Xq'],
+		});
+
+		expect(result.tracks.length).toBeGreaterThan(0);
+	});
+
+	it('Should throw error if more than 5 seeds are provided', async () => {
+		const result = tracksWrapper.getRecommendations({
+			seed_artists: ['69lt02nubfNbPdrvH4tJxx', '7F9ZL4TJNr8AoU0UUQX8ih'],
+			seed_genres: ['heavy-metal', 'death-metal', 'metal', 'rock', 'pop'],
+			seed_tracks: ['74p4l00JKebWPlAfpqi9Xq'],
+		});
+
+		await expect(result).rejects.toThrowError("The total number of seed tracks, artists and genres cannot be greater than 5");
+	});
 })
