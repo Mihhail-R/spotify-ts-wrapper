@@ -55,9 +55,11 @@ export default class HttpClient implements IHttpClient {
     const urlSearchParams = new URLSearchParams();
 
     if (params) {
-      Object.keys(params).forEach((key) =>
-        urlSearchParams.append(key, params[key]),
-      );
+      Object.keys(params).forEach((key) => {
+        if (params[key]) {
+          return urlSearchParams.append(key, params[key]);
+        }
+      });
     }
 
     return urlSearchParams;
@@ -69,7 +71,9 @@ export default class HttpClient implements IHttpClient {
 
     if (params) {
       const urlSearchParams = this.parseParams(params);
-      url += `?${urlSearchParams.toString()}`;
+      if (urlSearchParams.toString()) {
+        url += `?${urlSearchParams.toString()}`;
+      }
     }
 
     const response = await fetch(url, {
@@ -89,7 +93,9 @@ export default class HttpClient implements IHttpClient {
 
     if (params) {
       const urlSearchParams = this.parseParams(params);
-      url += `?${urlSearchParams.toString()}`;
+      if (urlSearchParams.toString()) {
+        url += `?${urlSearchParams.toString()}`;
+      }
     }
 
     await fetch(url, {
@@ -108,7 +114,9 @@ export default class HttpClient implements IHttpClient {
 
     if (params) {
       const urlSearchParams = this.parseParams(params);
-      url += `?${urlSearchParams.toString()}`;
+      if (urlSearchParams.toString()) {
+        url += `?${urlSearchParams.toString()}`;
+      }
     }
 
     await fetch(url, {
@@ -127,7 +135,9 @@ export default class HttpClient implements IHttpClient {
 
     if (params) {
       const urlSearchParams = this.parseParams(params);
-      url += `?${urlSearchParams.toString()}`;
+      if (urlSearchParams.toString()) {
+        url += `?${urlSearchParams.toString()}`;
+      }
     }
 
     await fetch(url, {
