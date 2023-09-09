@@ -1,15 +1,21 @@
 import SpotifyClient from '../../src/SpotifyClient/SpotifyClient';
 
-import BaseClient from '../util/BaseClient';
 import EpisodesWrapper from "../../src/SpotifyClient/Episodes/EpisodesWrapper";
+import HttpClient from "../../src/http/HttpClient";
+import {SPOTIFY_CLIENT_ID, SPOTIFY_SECRET} from "../util/config";
 
 describe('episodesWrapper', () => {
-	const httpClient = new BaseClient();
+	const httpClient = new HttpClient({
+		baseUrl: 'https://api.spotify.com/v1/',
+		authenticationUrl: 'https://accounts.spotify.com/api/token',
+		clientId: SPOTIFY_CLIENT_ID,
+		clientSecret: SPOTIFY_SECRET,
+	});
 	let spotifyClient: SpotifyClient;
 	let episodesWrapper: EpisodesWrapper;
 
 	beforeAll(async () => {
-		await httpClient.setAccessToken();
+		await httpClient.authorizeApp();
 		spotifyClient = new SpotifyClient(httpClient);
 		episodesWrapper = spotifyClient.getEpisodesWrapper();
 	});

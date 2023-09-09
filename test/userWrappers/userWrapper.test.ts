@@ -64,7 +64,7 @@ describe('UserWrapper', () => {
 	it('Should follow artists', async () => {
 		axiosMock.put.mockImplementationOnce(() => Promise.resolve());
 
-		await expect(spotifyClient.followArtist("1")).resolves.not.toThrow();
+		await expect(spotifyClient.followArtistOrUser("1")).resolves.not.toThrow();
 	});
 
 	it('Should follow playlist', async () => {
@@ -76,7 +76,7 @@ describe('UserWrapper', () => {
 	it('Should unfollow artists', async () => {
 		axiosMock.delete.mockImplementationOnce(() => Promise.resolve());
 
-		await expect(spotifyClient.unfollowArtist("1")).resolves.not.toThrow();
+		await expect(spotifyClient.unfollowArtistOrUser("1")).resolves.not.toThrow();
 	});
 
 	it('Should unfollow playlist', async () => {

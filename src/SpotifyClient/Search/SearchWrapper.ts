@@ -18,14 +18,13 @@ export default class SearchWrapper {
       .map((t) => t.toLowerCase().slice(-t.length, t.length - 1))
       .join(",");
 
-    if (include_external) {
-      return await this.client.get<Search<T>>(
-        `search?q=${q}&type=${types}&market=${market}&offset=${offset}&limit=${limit}&include_external=audio`,
-      );
-    }
-
-    return await this.client.get<Search<T>>(
-      `search?q=${q}&type=${types}&market=${market}&offset=${offset}&limit=${limit}`,
-    );
+    return await this.client.get<Search<T>>("search", {
+      q,
+      type: types,
+      market,
+      offset,
+      limit,
+      include_external: include_external ? "audio" : undefined,
+    });
   }
 }

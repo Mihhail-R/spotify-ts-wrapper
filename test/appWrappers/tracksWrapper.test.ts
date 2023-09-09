@@ -1,14 +1,20 @@
 import {SpotifyClient} from "../../src";
-import BaseClient from "../util/BaseClient";
 import TracksWrapper from "../../src/SpotifyClient/Tracks/TracksWrapper";
+import HttpClient from "../../src/http/HttpClient";
+import {SPOTIFY_CLIENT_ID, SPOTIFY_SECRET} from "../util/config";
 
 describe('TracksWrapper', () => {
-	const httpClient = new BaseClient();
+	const httpClient = new HttpClient({
+		baseUrl: 'https://api.spotify.com/v1/',
+		authenticationUrl: 'https://accounts.spotify.com/api/token',
+		clientId: SPOTIFY_CLIENT_ID,
+		clientSecret: SPOTIFY_SECRET,
+	});
 	let spotifyClient: SpotifyClient;
 	let tracksWrapper: TracksWrapper;
 
 	beforeAll(async () => {
-		await httpClient.setAccessToken();
+		await httpClient.authorizeApp();
 		spotifyClient = new SpotifyClient(httpClient);
 		tracksWrapper = spotifyClient.getTracksWrapper();
 	});
@@ -53,6 +59,8 @@ describe('TracksWrapper', () => {
 			seed_artists: ['69lt02nubfNbPdrvH4tJxx', '7F9ZL4TJNr8AoU0UUQX8ih'],
 			seed_genres: ['heavy-metal', 'death-metal'],
 			seed_tracks: ['74p4l00JKebWPlAfpqi9Xq'],
+			min_tempo: 180,
+			max_popularity: 10,
 		});
 
 		expect(result.tracks.length).toBeGreaterThan(0);

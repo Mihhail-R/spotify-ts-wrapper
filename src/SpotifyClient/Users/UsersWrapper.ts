@@ -15,7 +15,10 @@ export default class UsersWrapper {
     ids: string[],
   ): Promise<boolean[]> {
     return await this.client.get<boolean[]>(
-      `playlists/${playlistId}/followers/contains?ids=${ids.join(",")}`,
+      `playlists/${playlistId}/followers/contains`,
+      {
+        ids: ids.join(","),
+      },
     );
   }
 }

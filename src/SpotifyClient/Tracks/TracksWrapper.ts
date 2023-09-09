@@ -13,16 +13,17 @@ export default class TracksWrapper {
   }
 
   public async getTrack(trackId: string, market?: string): Promise<Track> {
-    return await this.client.get<Track>(`tracks/${trackId}?market=${market}`);
+    return await this.client.get<Track>(`tracks/${trackId}`, { market });
   }
 
   public async getTracks(
     trackIds: string[],
     market?: string,
   ): Promise<{ tracks: Track[] }> {
-    return await this.client.get<{ tracks: Track[] }>(
-      `tracks?ids=${trackIds.join(",")}&market=${market}`,
-    );
+    return await this.client.get<{ tracks: Track[] }>("tracks", {
+      ids: trackIds.join(","),
+      market,
+    });
   }
 
   public async getAudioFeatures(trackId: string): Promise<AudioFeatures> {
@@ -34,7 +35,9 @@ export default class TracksWrapper {
   ): Promise<{ audio_features: AudioFeatures[] }> {
     return await this.client.get<{
       audio_features: AudioFeatures[];
-    }>(`audio-features?ids=${trackIds.join(",")}`);
+    }>("audio-features", {
+      ids: trackIds.join(","),
+    });
   }
 
   public async getAudioAnalysis(trackId: string): Promise<AudioAnalysis> {

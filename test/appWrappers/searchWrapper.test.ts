@@ -1,14 +1,20 @@
 import {SpotifyClient} from "../../src";
-import BaseClient from "../util/BaseClient";
 import SearchWrapper from "../../src/SpotifyClient/Search/SearchWrapper";
+import HttpClient from "../../src/http/HttpClient";
+import {SPOTIFY_CLIENT_ID, SPOTIFY_SECRET} from "../util/config";
 
 describe('SearchWrapper', () => {
-	const httpClient = new BaseClient();
+	const httpClient = new HttpClient({
+		baseUrl: 'https://api.spotify.com/v1/',
+		authenticationUrl: 'https://accounts.spotify.com/api/token',
+		clientId: SPOTIFY_CLIENT_ID,
+		clientSecret: SPOTIFY_SECRET,
+	});
 	let spotifyClient: SpotifyClient;
 	let searchWrapper: SearchWrapper;
 
 	beforeAll(async () => {
-		await httpClient.setAccessToken();
+		await httpClient.authorizeApp();
 		spotifyClient = new SpotifyClient(httpClient);
 		searchWrapper = spotifyClient.getSearchWrapper();
 	});
