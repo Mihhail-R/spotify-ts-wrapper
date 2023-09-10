@@ -1,6 +1,6 @@
 export default interface IHttpClient {
   get<T>(endpoint: string, params?: any): Promise<T>;
-  post(endpoint: string, data?: any, params?: any): Promise<void>;
-  put(endpoint: string, data?: any, params?: any): Promise<void>;
-  delete(endpoint: string, params?: any): Promise<void>;
+  post<T>(endpoint: string, data?: any, params?: any): Promise<T>;
+  put<T>(endpoint: string, data?: any, params?: any): Promise<T>;
+  delete<T>(endpoint: string, params?: any): Promise<T>;
 }
