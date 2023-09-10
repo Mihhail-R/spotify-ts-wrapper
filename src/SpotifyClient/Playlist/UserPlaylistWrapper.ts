@@ -1,5 +1,7 @@
 import {
   ChangePlaylistDetails,
+  PaginatedSimplifiedPlaylist,
+  Playlist,
   UpdatePlaylistItems,
 } from "../../Types/Playlist";
 import IHttpClient from "../IHttpClient";
@@ -56,5 +58,67 @@ export default class UserPlaylistWrapper extends PlaylistWrapper {
         position,
       },
     );
+  }
+
+  public async removeItemsFromPlaylist(
+    playlistId: string,
+    uris: string[],
+    snapshotId?: string,
+  ): Promise<{ snapshot_id: string }> {
+    return await this.client.delete<{ snapshot_id: string }>(
+      `playlists/${playlistId}/tracks`,
+      {
+        uris,
+        snapshotId,
+      },
+    );
+  }
+
+  public async getMyPlaylists(
+    limit = 20,
+    offset = 0,
+  ): Promise<PaginatedSimplifiedPlaylist> {
+    return await this.client.get<PaginatedSimplifiedPlaylist>("me/playlists", {
+      limit,
+      offset,
+    });
+  }
+
+  public async getUserPlaylists(
+    userId: string,
+    limit = 20,
+    offset = 0,
+  ): Promise<PaginatedSimplifiedPlaylist> {
+    return await this.client.get<PaginatedSimplifiedPlaylist>(
+      `users/${userId}/playlists`,
+      {
+        limit,
+        offset,
+      },
+    );
+  }
+
+  public async createPlaylist(
+    userId: string,
+    name: string,
+    public_?: boolean,
+    collaborative?: boolean,
+    description?: string,
+  ): Promise<Playlist> {
+    return await this.client.post<Playlist>(`users/${userId}/playlists`, {
+      name,
+      public: public_,
+      collaborative,
+      description,
+    });
+  }
+
+  public async addCoverImageToPlaylist(
+    playlistId: string,
+    base64JpegImage: string,
+  ): Promise<void> {
+    return await this.client.put<void>(`playlists/${playlistId}/images`, {
+      base64JpegImage,
+    });
   }
 }
