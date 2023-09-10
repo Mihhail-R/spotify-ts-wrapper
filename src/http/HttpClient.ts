@@ -87,7 +87,7 @@ export default class HttpClient implements IHttpClient {
     return (await response.json()) as T;
   }
 
-  public async post(endpoint: string, data?: any, params?: any): Promise<void> {
+  public async post<T>(endpoint: string, data?: any, params?: any): Promise<T> {
     const baseUrl = this.createUrl(endpoint);
     let url = baseUrl.toString();
 
@@ -98,7 +98,7 @@ export default class HttpClient implements IHttpClient {
       }
     }
 
-    await fetch(url, {
+    const response = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -106,9 +106,11 @@ export default class HttpClient implements IHttpClient {
       },
       body: data ? JSON.stringify(data) : undefined,
     });
+
+    return (await response.json()) as T;
   }
 
-  public async put(endpoint: string, data?: any, params?: any): Promise<void> {
+  public async put<T>(endpoint: string, data?: any, params?: any): Promise<T> {
     const baseUrl = this.createUrl(endpoint);
     let url = baseUrl.toString();
 
@@ -119,7 +121,7 @@ export default class HttpClient implements IHttpClient {
       }
     }
 
-    await fetch(url, {
+    const response = await fetch(url, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -127,9 +129,11 @@ export default class HttpClient implements IHttpClient {
       },
       body: data ? JSON.stringify(data) : undefined,
     });
+
+    return (await response.json()) as T;
   }
 
-  public async delete(endpoint: string, params?: any): Promise<void> {
+  public async delete<T>(endpoint: string, params?: any): Promise<T> {
     const baseUrl = this.createUrl(endpoint);
     let url = baseUrl.toString();
 
@@ -140,12 +144,14 @@ export default class HttpClient implements IHttpClient {
       }
     }
 
-    await fetch(url, {
+    const response = await fetch(url, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${this.accessToken}`,
       },
     });
+
+    return (await response.json()) as T;
   }
 }
