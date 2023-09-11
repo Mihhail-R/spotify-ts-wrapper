@@ -1,7 +1,7 @@
 import AlbumsWrapper from '../../src/SpotifyClient/Albums/AlbumsWrapper';
 import SpotifyClient from '../../src/SpotifyClient/SpotifyClient';
 
-import HttpClient from "../../src/http/HttpClient";
+import { HttpClient } from '../../src';
 import {SPOTIFY_CLIENT_ID, SPOTIFY_SECRET} from "../util/config";
 
 describe('AlbumsWrapper', () => {

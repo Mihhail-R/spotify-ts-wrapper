@@ -1,4 +1,4 @@
-import HttpClient from "../../src/http/HttpClient";
+import { HttpClient } from '../../src';
 import {SPOTIFY_AUTH_URL, SPOTIFY_CLIENT_ID, SPOTIFY_SECRET} from "../util/config";
 import {SpotifyClient} from "../../src";
 import PlaylistWrapper from "../../src/SpotifyClient/Playlist/PlaylistWrapper";

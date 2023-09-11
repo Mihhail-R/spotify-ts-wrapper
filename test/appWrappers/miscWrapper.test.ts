@@ -1,6 +1,6 @@
 import {SpotifyClient} from "../../src";
 import MiscWrapper from "../../src/SpotifyClient/Misc/MiscWrapper";
-import HttpClient from "../../src/http/HttpClient";
+import { HttpClient } from '../../src';
 import {SPOTIFY_CLIENT_ID, SPOTIFY_SECRET} from "../util/config";
 
 describe('MiscWrapper', () => {

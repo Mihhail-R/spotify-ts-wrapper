@@ -1,6 +1,4 @@
-import HttpClient from "../src/http/HttpClient";
-import {SPOTIFY_CLIENT_ID, SPOTIFY_SECRET} from "./util/config";
-import {CategoryItems} from "../src/Types/Category";
+import { HttpClient } from '../src';
 
 describe('HttpClient', () => {
 	const httpClient = new HttpClient({
