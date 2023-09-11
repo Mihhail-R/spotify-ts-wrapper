@@ -1,9 +1,11 @@
 import { EpisodeItems } from "../../Types/Episodes";
 import IHttpClient from "../IHttpClient";
 
-export default class UserEpisodesWrapper {
-  constructor(private readonly client: IHttpClient) {
-    this.client = client;
+import EpisodesWrapper from "./EpisodesWrapper";
+
+export default class UserEpisodesWrapper extends EpisodesWrapper {
+  constructor(protected readonly client: IHttpClient) {
+    super(client);
   }
 
   public async getSavedEpisodes(

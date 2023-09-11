@@ -1,12 +1,14 @@
 import { PaginatedAudioBooks } from "../../Types/Audiobook";
 import IHttpClient from "../IHttpClient";
 
-export default class UserAudiobookWrapper {
-  constructor(private readonly client: IHttpClient) {
-    this.client = client;
+import AudiobookWrapper from "./AudiobookWrapper";
+
+export default class UserAudiobookWrapper extends AudiobookWrapper {
+  constructor(protected readonly client: IHttpClient) {
+    super(client);
   }
 
-  public async getAudiobooks(
+  public async getMyAudiobooks(
     limit: number = 10,
     offset: number = 0,
   ): Promise<PaginatedAudioBooks> {

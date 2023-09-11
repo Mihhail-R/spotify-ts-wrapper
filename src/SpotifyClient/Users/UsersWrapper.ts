@@ -2,7 +2,7 @@ import { User } from "../../Types/User";
 import IHttpClient from "../IHttpClient";
 
 export default class UsersWrapper {
-  constructor(private readonly client: IHttpClient) {
+  constructor(protected readonly client: IHttpClient) {
     this.client = client;
   }
 

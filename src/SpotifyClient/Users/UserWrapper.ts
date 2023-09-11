@@ -2,9 +2,11 @@ import { PaginatedArtists } from "../../Types/Artist";
 import { Me, UserTopItems, UserTopItemsTypes } from "../../Types/User";
 import IHttpClient from "../IHttpClient";
 
-export default class UserWrapper {
-  constructor(private readonly client: IHttpClient) {
-    this.client = client;
+import UsersWrapper from "./UsersWrapper";
+
+export default class UserWrapper extends UsersWrapper {
+  constructor(protected readonly client: IHttpClient) {
+    super(client);
   }
   public async me(): Promise<Me> {
     return await this.client.get<Me>("me");

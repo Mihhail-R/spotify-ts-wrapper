@@ -3,7 +3,7 @@ import IHttpClient from "../IHttpClient";
 
 export default class AudiobookWrapper {
   private readonly path: string = "audiobooks";
-  constructor(private readonly client: IHttpClient) {
+  constructor(protected readonly client: IHttpClient) {
     this.client = client;
   }
 

@@ -1,12 +1,14 @@
 import { UserSavedTracks } from "../../Types/Track";
 import IHttpClient from "../IHttpClient";
 
-export default class UserTracksWrapper {
-  constructor(private readonly client: IHttpClient) {
-    this.client = client;
+import TracksWrapper from "./TracksWrapper";
+
+export default class UserTracksWrapper extends TracksWrapper {
+  constructor(protected readonly client: IHttpClient) {
+    super(client);
   }
 
-  public async getTracks(
+  public async getMyTracks(
     limit: number = 20,
     offset: number = 0,
     market?: string,

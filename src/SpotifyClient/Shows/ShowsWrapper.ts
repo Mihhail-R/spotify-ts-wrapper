@@ -2,7 +2,7 @@ import { PaginatedEpisodes, Show, SimplifiedShow } from "../../Types/Episodes";
 import IHttpClient from "../IHttpClient";
 
 export default class ShowsWrapper {
-  constructor(private readonly client: IHttpClient) {
+  constructor(protected readonly client: IHttpClient) {
     this.client = client;
   }
 
