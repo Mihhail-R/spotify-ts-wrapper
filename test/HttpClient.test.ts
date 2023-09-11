@@ -71,4 +71,10 @@ describe('HttpClient', () => {
 
 		await expect(result).resolves.not.toThrow();
 	});
+
+	it('Should fail to authorize app', async () => {
+		const result = httpClient.authorizeApp();
+
+		await expect(result).rejects.toThrow();
+	})
 });
