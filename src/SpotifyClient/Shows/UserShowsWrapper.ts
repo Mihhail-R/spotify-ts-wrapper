@@ -1,12 +1,14 @@
 import { ShowItems } from "../../Types/Episodes";
 import IHttpClient from "../IHttpClient";
 
-export default class UserShowsWrapper {
-  constructor(private readonly client: IHttpClient) {
-    this.client = client;
+import ShowsWrapper from "./ShowsWrapper";
+
+export default class UserShowsWrapper extends ShowsWrapper {
+  constructor(protected readonly client: IHttpClient) {
+    super(client);
   }
 
-  public async getShows(): Promise<ShowItems> {
+  public async getMyShows(): Promise<ShowItems> {
     return await this.client.get<ShowItems>("me/shows");
   }
 

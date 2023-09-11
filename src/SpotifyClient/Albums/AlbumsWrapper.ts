@@ -3,9 +3,9 @@ import { PaginatedTracks } from "../../Types/Track";
 import IHttpClient from "../IHttpClient";
 
 export default class AlbumsWrapper {
-  private readonly path: string = "albums";
+  protected readonly path: string = "albums";
 
-  constructor(private readonly client: IHttpClient) {
+  constructor(protected readonly client: IHttpClient) {
     this.client = client;
   }
 

@@ -1,17 +1,20 @@
 import { PaginatedAlbums } from "../../Types/Album";
 import IHttpClient from "../IHttpClient";
 
-export default class UserAlbumsWrapper {
-  private readonly path: string = "me/albums";
-  constructor(private readonly client: IHttpClient) {
-    this.client = client;
+import AlbumsWrapper from "./AlbumsWrapper";
+
+export default class UserAlbumsWrapper extends AlbumsWrapper {
+  protected readonly path: string = "me/albums";
+
+  constructor(protected readonly client: IHttpClient) {
+    super(client);
   }
 
   /**
    * Get a list of the albums saved in the current Spotify user’s ‘Your Music’ library.
    * Required authorization scope: user-library-read
    */
-  public async getAlbums(
+  public async getMyAlbums(
     limit: number = 20,
     offset: number = 0,
     market?: string,

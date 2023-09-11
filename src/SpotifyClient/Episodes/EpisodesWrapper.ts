@@ -4,7 +4,7 @@ import IHttpClient from "../IHttpClient";
 export default class EpisodesWrapper {
   private readonly path = "episodes";
 
-  constructor(private readonly client: IHttpClient) {
+  constructor(protected readonly client: IHttpClient) {
     this.client = client;
   }
 
