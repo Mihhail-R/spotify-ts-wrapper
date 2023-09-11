@@ -64,10 +64,3 @@ const spotifyClient = new SpotifyClient(HttpClient);
 
 const album: Album = await spotifyClient.albums.getAlbum('albumId');
 ```
-
-
-## TODO
-
--   [ ] Add playlist wrapper
-    -   ref: https://developer.spotify.com/documentation/web-api/reference/get-playlist/
--   [ ] Split SpotifyClient into two classes, one for user and one for app
