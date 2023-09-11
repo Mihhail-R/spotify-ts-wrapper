@@ -8,6 +8,8 @@ import UserEpisodesWrapper from "./Episodes/UserEpisodesWrapper";
 import IHttpClient from "./IHttpClient";
 import MiscWrapper from "./Misc/MiscWrapper";
 import PlayerWrapper from "./Player/PlayerWrapper";
+import PlaylistWrapper from "./Playlist/PlaylistWrapper";
+import UserPlaylistWrapper from "./Playlist/UserPlaylistWrapper";
 import SearchWrapper from "./Search/SearchWrapper";
 import ShowsWrapper from "./Shows/ShowsWrapper";
 import UserShowsWrapper from "./Shows/UserShowsWrapper";
@@ -29,6 +31,7 @@ export default class SpotifyClient {
   private showsWrapper: ShowsWrapper;
   private usersWrapper: UsersWrapper;
   private tracksWrapper: TracksWrapper;
+  private playlistWrapper: PlaylistWrapper;
 
   /**
    * User specific wrappers, these cannot be accessed without user authentication and proper scopes
@@ -40,6 +43,7 @@ export default class SpotifyClient {
   private playerWrapper: PlayerWrapper;
   private userShowsWrapper: UserShowsWrapper;
   private userTracksWrapper: UserTracksWrapper;
+  private userPlaylistWrapper: UserPlaylistWrapper;
 
   constructor(private readonly httpClient: IHttpClient) {
     this.httpClient = httpClient;
@@ -235,5 +239,29 @@ export default class SpotifyClient {
     }
 
     return this.tracksWrapper;
+  }
+
+  /**
+   * Get playlist wrapper
+   * @returns PlaylistWrapper
+   */
+  public getPlaylistWrapper(): PlaylistWrapper {
+    if (!this.playlistWrapper) {
+      this.playlistWrapper = new PlaylistWrapper(this.httpClient);
+    }
+
+    return this.playlistWrapper;
+  }
+
+  /**
+   * Get user playlist wrapper
+   * @returns UserPlaylistWrapper
+   */
+  public getUserPlaylistWrapper(): UserPlaylistWrapper {
+    if (!this.userPlaylistWrapper) {
+      this.userPlaylistWrapper = new UserPlaylistWrapper(this.httpClient);
+    }
+
+    return this.userPlaylistWrapper;
   }
 }
