@@ -16,7 +16,7 @@ describe('userTrackWrapper', () => {
 	it('Should get user tracks', async () => {
 		httpClient.get.mockImplementationOnce(() => Promise.resolve(userTrackMocks));
 
-		const result = await userTrackWrapper.getTracks();
+		const result = await userTrackWrapper.getMyTracks();
 
 		expect(result.items.length).toBeGreaterThan(0);
 	});

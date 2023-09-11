@@ -31,7 +31,7 @@ describe('userShowsWrapper', () => {
 			previous: null
 		} as Partial<ShowItems>));
 
-		const result = await spotifyClient.getShows();
+		const result = await spotifyClient.getMyShows();
 
 		expect(result.items[0].show.id).toStrictEqual("1");
 	});

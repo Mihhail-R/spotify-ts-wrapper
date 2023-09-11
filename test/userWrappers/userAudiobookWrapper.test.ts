@@ -21,7 +21,7 @@ describe('userAudiobookWrapper', () => {
 			],
 		}));
 
-		const result = await spotifyClient.getAudiobooks();
+		const result = await spotifyClient.getMyAudiobooks();
 
 		expect(result.items[0].id).toStrictEqual("1");
 	});

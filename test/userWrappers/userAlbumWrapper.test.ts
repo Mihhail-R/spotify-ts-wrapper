@@ -21,7 +21,7 @@ describe('userAlbumWrapper', () => {
 			]
 		}));
 
-		const result = await spotifyClient.getAlbums();
+		const result = await spotifyClient.getMyAlbums();
 
 		expect(result.items[0].id).toStrictEqual("1");
 	});
