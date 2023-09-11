@@ -17,6 +17,8 @@ import UserEpisodesWrapper from "../src/SpotifyClient/Episodes/UserEpisodesWrapp
 import UserAudiobookWrapper from "../src/SpotifyClient/Audiobooks/UserAudiobookWrapper";
 import HttpClient from "../src/http/HttpClient";
 import {SPOTIFY_CLIENT_ID, SPOTIFY_SECRET} from "./util/config";
+import UserPlaylistWrapper from "../src/SpotifyClient/Playlist/UserPlaylistWrapper";
+import PlaylistWrapper from "../src/SpotifyClient/Playlist/PlaylistWrapper";
 
 describe('SpotifyClient', () => {
 	const httpClient = new HttpClient({
@@ -97,5 +99,13 @@ describe('SpotifyClient', () => {
 
 	it('should get User audiobook wrapper', () => {
 		expect(spotifyClient.getUserAudioBookWrapper()).toBeInstanceOf(UserAudiobookWrapper);
+	});
+
+	it('should get Playlist wrapper', () => {
+		expect(spotifyClient.getPlaylistWrapper()).toBeInstanceOf(PlaylistWrapper);
+	});
+
+	it('should get User Playlist wrapper', () => {
+		expect(spotifyClient.getUserPlaylistWrapper()).toBeInstanceOf(UserPlaylistWrapper);
 	});
 });
