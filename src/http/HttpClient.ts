@@ -28,7 +28,7 @@ export default class HttpClient implements IHttpClient {
 
   public async authorizeApp(): Promise<void> {
     if (!this.authenticationUrl) {
-      return;
+      throw new Error("Authentication url is not defined");
     }
 
     const result = await fetch(this.authenticationUrl, {
