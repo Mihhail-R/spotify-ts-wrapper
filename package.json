@@ -1,6 +1,5 @@
 {
 	"name": "@mihhailreh/spotify-ts-wrapper",
-	"version": "1.0.0",
 	"description": "Spotify web api wrapper written in typescript",
 	"main": "build/index.js",
 	"files": ["build"],
