@@ -1,16 +1,19 @@
-export type ClientConfigConfigurations = {
+interface ClientConfig {
   baseUrl: string;
-} & (
-  | {
-      token: string;
-      authenticationUrl: never;
-      clientId: never;
-      clientSecret: never;
-    }
-  | {
-      token: never;
-      authenticationUrl: string;
-      clientId: string;
-      clientSecret: string;
-    }
-);
+}
+
+interface DefinedToken extends ClientConfig {
+  token: string;
+  clientId?: never;
+  clientSecret?: never;
+  authenticationUrl?: never;
+}
+
+interface ClientCredentials extends ClientConfig {
+  token?: never;
+  clientId: string;
+  clientSecret: string;
+  authenticationUrl: string;
+}
+
+export type ClientConfigurations = DefinedToken | ClientCredentials;

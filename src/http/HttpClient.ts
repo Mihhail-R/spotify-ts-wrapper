@@ -3,7 +3,7 @@ import { fetch } from "undici";
 import IHttpClient from "../SpotifyClient/IHttpClient";
 import { ClientCredentials } from "../Types/ClientCredentials";
 
-import { ClientConfigConfigurations } from "./ClientConfig";
+import { ClientConfigurations } from "./ClientConfig";
 
 export default class HttpClient implements IHttpClient {
   public baseUrl: string;
@@ -14,7 +14,7 @@ export default class HttpClient implements IHttpClient {
   private clientSecret?: string;
   private accessToken?: string;
 
-  constructor(config: ClientConfigConfigurations) {
+  constructor(config: ClientConfigurations) {
     this.baseUrl = config.baseUrl;
     if (config.token) {
       this.accessToken = config.token;
