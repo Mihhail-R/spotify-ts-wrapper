@@ -46,11 +46,17 @@ const album: Album = await spotifyClient.albums.getAlbum('albumId');
 import { SpotifyClient, HttpClient } from '..';
 import { Album } from './Album';
 
-const httpClient = new HttpClient({
+const newTokenClient = new HttpClient({
     baseUrl: 'string',
     authenticationUrl: 'string',
     clientId: 'string',
     clientSecret: 'string',
+});
+
+// or if you already have a token, you can pass it in the constructor
+const existingTokenClient = new HttpClient({
+     baseUrl: 'string',
+     token: 'string',
 });
 
 // this will authorize based on provided clientId and clientSecret
@@ -58,9 +64,9 @@ const httpClient = new HttpClient({
 // If you want to authorize a user you need to create your own implementation
 // you could extend the HttpClient class and override the authorizeApp method
 // or you could create your own authorizeUser method ontop of it
-await httpClient.authorizeApp();
+await newTokenClient.authorizeApp();
 
-const spotifyClient = new SpotifyClient(HttpClient);
+const spotifyClient = new SpotifyClient(newTokenClient);
 
 const album: Album = await spotifyClient.albums.getAlbum('albumId');
 ```
