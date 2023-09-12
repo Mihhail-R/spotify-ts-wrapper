@@ -1,11 +1,20 @@
 {
-	"name": "spotify-api-wrapper",
+	"name": "@mihhailreh/spotify-ts-wrapper",
 	"version": "1.0.0",
-	"description": "Spotify api wrapper written in typescript",
-	"main": "src/index.ts",
+	"description": "Spotify web api wrapper written in typescript",
+	"main": "build/index.js",
+	"files": ["build"],
 	"engines": {
-		"node": ">=18"
+		"node": ">=16"
 	},
+	"keywords": [
+		"spotify",
+		"api",
+		"wrapper",
+		"typescript",
+		"ts"
+	],
+	"bugs": "https://github.com/Mihhail-R/spotify-ts-wrapper/issues",
 	"scripts": {
 		"fix": "prettier-eslint --write \"src/**/*.ts\"",
 		"lint": "prettier-eslint --list-different \"src/**/*.ts\"",
@@ -16,7 +25,7 @@
 	},
 	"author": "Mihhail-R",
 	"license": "MIT",
-	"homepage": "",
+	"homepage": "https://github.com/Mihhail-R/spotify-ts-wrapper/",
 	"devDependencies": {
 		"@jaanjah/eslint-config": "^1.2.1",
 		"@jaanjah/prettier-config": "^1.0.1",
