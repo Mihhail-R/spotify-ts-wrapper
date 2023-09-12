@@ -1,0 +1,27 @@
+name: Publish to NPM
+on:
+    release:
+        types: [published]
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            packages: write
+        steps:
+        - name: Checkout
+          uses: actions/checkout@v3
+        - name: Setup Node
+          uses: actions/setup-node@v3
+          with:
+              node-version: '18'
+              check-latest: true
+              cache: 'npm'
+        - name: Install dependencies and build
+          run: npm ci --omit-dev && npm run build
+        - name: Set release version
+          run: npm version ${{ github.event.release.tag_name }}
+        - name: Publish package on NPM
+          run: npm publish --access public
+          env:
+              NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
