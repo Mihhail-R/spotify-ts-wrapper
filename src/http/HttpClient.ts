@@ -3,7 +3,7 @@ import { fetch } from "undici";
 import IHttpClient from "../SpotifyClient/IHttpClient";
 import { ClientCredentials } from "../Types/ClientCredentials";
 
-import ClientConfig from "./ClientConfig";
+import { ClientConfigConfigurations } from "./ClientConfig";
 
 export default class HttpClient implements IHttpClient {
   public baseUrl: string;
@@ -14,19 +14,22 @@ export default class HttpClient implements IHttpClient {
   private clientSecret?: string;
   private accessToken?: string;
 
-  constructor({
-    baseUrl,
-    authenticationUrl,
-    clientId,
-    clientSecret,
-  }: ClientConfig) {
-    this.baseUrl = baseUrl;
-    this.authenticationUrl = authenticationUrl;
-    this.clientId = clientId;
-    this.clientSecret = clientSecret || "";
+  constructor(config: ClientConfigConfigurations) {
+    this.baseUrl = config.baseUrl;
+    if (config.token) {
+      this.accessToken = config.token;
+    } else {
+      this.clientId = config.clientId;
+      this.clientSecret = config.clientSecret;
+      this.authenticationUrl = config.authenticationUrl;
+    }
   }
 
   public async authorizeApp(): Promise<void> {
+    if (this.accessToken) {
+      return;
+    }
+
     if (!this.authenticationUrl) {
       throw new Error("Authentication url is not defined");
     }

@@ -1,6 +1,16 @@
-export default interface ClientConfig {
+export type ClientConfigConfigurations = {
   baseUrl: string;
-  authenticationUrl?: string;
-  clientId?: string;
-  clientSecret?: string;
-}
+} & (
+  | {
+      token: string;
+      authenticationUrl: never;
+      clientId: never;
+      clientSecret: never;
+    }
+  | {
+      token: never;
+      authenticationUrl: string;
+      clientId: string;
+      clientSecret: string;
+    }
+);
