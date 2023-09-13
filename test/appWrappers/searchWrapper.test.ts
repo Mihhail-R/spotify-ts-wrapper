@@ -16,7 +16,7 @@ describe('SearchWrapper', () => {
 	beforeAll(async () => {
 		await httpClient.authorizeApp();
 		spotifyClient = new SpotifyClient(httpClient);
-		searchWrapper = spotifyClient.getSearchWrapper();
+		searchWrapper = spotifyClient.searchWrapper;
 	});
 
 	it('Should perform search', async () => {

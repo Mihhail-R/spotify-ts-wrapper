@@ -16,7 +16,7 @@ describe('AudioBookWrapper', () => {
 	beforeAll(async () => {
 		await httpClient.authorizeApp();
 		spotifyClient = new SpotifyClient(httpClient);
-		audioBooksWrapper = spotifyClient.getAudioBookWrapper();
+		audioBooksWrapper = spotifyClient.audiobookWrapper;
 	});
 
 	it('Should get audio book', async () => {

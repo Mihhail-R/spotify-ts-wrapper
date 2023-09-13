@@ -106,5 +106,5 @@ dist
 # IntelliJ IDEA
 .idea/
 
-# SWC output directory
-build/
+# build directory
+lib/

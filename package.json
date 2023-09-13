@@ -1,8 +1,8 @@
 {
 	"name": "@mihhailreh/spotify-ts-wrapper",
 	"description": "Spotify web api wrapper written in typescript",
-	"main": "build/index.js",
-	"files": ["build"],
+	"main": "lib/index.js",
+	"files": ["lib"],
 	"engines": {
 		"node": ">=16"
 	},

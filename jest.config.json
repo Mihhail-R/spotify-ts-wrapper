@@ -15,6 +15,6 @@
 		}
 	},
 	"coveragePathIgnorePatterns": [
-		"/node_modules/", "/test/", "/coverage/", "/build/"
+		"/node_modules/", "/test/", "/coverage/", "/lib/"
 	]
 }

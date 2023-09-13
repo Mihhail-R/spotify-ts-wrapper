@@ -6,7 +6,16 @@ Personal wrapper for the Spotify Web API written in TypeScript.
 
 Please keep in mind that Spotify provides their own SDK as well. See more info here: https://developer.spotify.com/documentation/web-api/libraries/
 
-## Usage
+## Installation and configuration
+
+```
+npm i @mihhailreh/spotify-ts-wrapper
+yarn add @mihhailreh/spotify-ts-wrapper
+```
+
+-   Create a Spotify app here: https://developer.spotify.com/dashboard/applications
+
+## How to use
 
 -   You can create your own HTTP client or use the one provided.
 -   Import the wrapper and create a new instance of the SpotifyClient class.
@@ -16,9 +25,7 @@ Please keep in mind that Spotify provides their own SDK as well. See more info h
 
 ## Example with your own HTTP client
 ```typescript
-import { SpotifyClient } from '..';
-import { IHttpClient } from '..';
-import { Album } from './Album';
+import { SpotifyClient, IHttpClient } from '@mihhailreh/spotify-ts-wrapper';
 
 // your implementation of the IHttpClient interface
 const httpClient: IHttpClient = {
@@ -38,13 +45,12 @@ const httpClient: IHttpClient = {
 
 const spotifyClient = new SpotifyClient(httpClient);
 
-const album: Album = await spotifyClient.albums.getAlbum('albumId');
+const album = await spotifyClient.albumsWrapper.getAlbum('albumId');
 ```
 
 ## Example with the provided HTTP client
 ```typescript
-import { SpotifyClient, HttpClient } from '..';
-import { Album } from './Album';
+import { SpotifyClient, HttpClient } from '@mihhailreh/spotify-ts-wrapper';
 
 const newTokenClient = new HttpClient({
     baseUrl: 'string',
@@ -68,5 +74,5 @@ await newTokenClient.authorizeApp();
 
 const spotifyClient = new SpotifyClient(newTokenClient);
 
-const album: Album = await spotifyClient.albums.getAlbum('albumId');
+const album = await spotifyClient.albumsWrapper.getAlbum('albumId');
 ```

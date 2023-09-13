@@ -30,11 +30,3 @@ jobs:
               with:
                   output: comment, report-markdown
                   test-script: npm run test
-            - name: Build project
-              run: npm install --omit-dev && npm run build
-            - name: Upload build artifact
-              uses: actions/upload-artifact@v3
-              with:
-                  name: build
-                  path: build
-                  retention-days: 3

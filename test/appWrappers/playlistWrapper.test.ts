@@ -16,7 +16,7 @@ describe('PlaylistWrapper', () => {
 	beforeAll(async () => {
 		await client.authorizeApp();
 		spotifyClient = new SpotifyClient(client);
-		playlistWrapper = spotifyClient.getPlaylistWrapper();
+		playlistWrapper = spotifyClient.playlistWrapper;
 	});
 
 	it('should get playlist', async () => {

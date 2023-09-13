@@ -16,7 +16,7 @@ describe('TracksWrapper', () => {
 	beforeAll(async () => {
 		await httpClient.authorizeApp();
 		spotifyClient = new SpotifyClient(httpClient);
-		tracksWrapper = spotifyClient.getTracksWrapper();
+		tracksWrapper = spotifyClient.tracksWrapper;
 	});
 
 	it('Should get tracks', async () => {

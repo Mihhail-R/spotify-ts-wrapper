@@ -18,7 +18,7 @@ describe('AlbumsWrapper', () => {
 	beforeAll(async () => {
 		await httpClient.authorizeApp();
 		spotifyClient = new SpotifyClient(httpClient);
-		albumsWrapper = spotifyClient.getAlbumsWrapper();
+		albumsWrapper = spotifyClient.albumsWrapper;
 	});
 
 	it('should get a single album', async () => {

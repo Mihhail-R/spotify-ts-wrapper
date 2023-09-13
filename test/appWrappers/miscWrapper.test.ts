@@ -17,7 +17,7 @@ describe('MiscWrapper', () => {
 	beforeAll(async () => {
 		await httpClient.authorizeApp();
 		spotifyClient = new SpotifyClient(httpClient);
-		miscWrapper = spotifyClient.getMiscWrapper();
+		miscWrapper = spotifyClient.miscWrapper;
 	});
 
 	it('Should get available markets', async () => {

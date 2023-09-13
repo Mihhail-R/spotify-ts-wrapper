@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-undef
 module.exports = {
-	ignorePatterns: ["node_modules/", "build/", "test/"],
+	ignorePatterns: ["node_modules/", "lib/", "test/"],
 	extends: "@jaanjah/eslint-config",
 	rules: {
 		"no-var": "error",

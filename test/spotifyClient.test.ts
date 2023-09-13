@@ -38,74 +38,74 @@ describe('SpotifyClient', () => {
 	});
 
 	it('should get albums wrapper', () => {
-		expect(spotifyClient.getAlbumsWrapper()).toBeInstanceOf(AlbumsWrapper);
+		expect(spotifyClient.albumsWrapper).toBeInstanceOf(AlbumsWrapper);
 	});
 
 	it('should get artists wrapper', () => {
-		expect(spotifyClient.getArtistWrapper()).toBeInstanceOf(ArtistsWrapper);
+		expect(spotifyClient.artistWrapper).toBeInstanceOf(ArtistsWrapper);
 	});
 
 	it('should get tracks wrapper', () => {
-		expect(spotifyClient.getTracksWrapper()).toBeInstanceOf(TracksWrapper);
+		expect(spotifyClient.tracksWrapper).toBeInstanceOf(TracksWrapper);
 	});
 
 	it('should get AudioBook wrapper', () => {
-		expect(spotifyClient.getAudioBookWrapper()).toBeInstanceOf(AudiobookWrapper);
+		expect(spotifyClient.audiobookWrapper).toBeInstanceOf(AudiobookWrapper);
 	});
 
 	it('should get Misc wrapper', () => {
-		expect(spotifyClient.getMiscWrapper()).toBeInstanceOf(MiscWrapper);
+		expect(spotifyClient.miscWrapper).toBeInstanceOf(MiscWrapper);
 	});
 
 	it('should get Search wrapper', () => {
-		expect(spotifyClient.getSearchWrapper()).toBeInstanceOf(SearchWrapper);
+		expect(spotifyClient.searchWrapper).toBeInstanceOf(SearchWrapper);
 	});
 
 	it('should get User wrapper', () => {
-		expect(spotifyClient.getUserWrapper()).toBeInstanceOf(UserWrapper);
+		expect(spotifyClient.userWrapper).toBeInstanceOf(UserWrapper);
 	});
 
 	it('should get Episodes wrapper', () => {
-		expect(spotifyClient.getEpisodesWrapper()).toBeInstanceOf(EpisodesWrapper);
+		expect(spotifyClient.episodesWrapper).toBeInstanceOf(EpisodesWrapper);
 	});
 
 	it('should get Shows wrapper', () => {
-		expect(spotifyClient.getShowsWrapper()).toBeInstanceOf(ShowsWrapper);
+		expect(spotifyClient.showsWrapper).toBeInstanceOf(ShowsWrapper);
 	});
 
 	it('should get Player wrapper', () => {
-		expect(spotifyClient.getPlayerWrapper()).toBeInstanceOf(PlayerWrapper);
+		expect(spotifyClient.playerWrapper).toBeInstanceOf(PlayerWrapper);
 	});
 
 	it('should get UserAlbums wrapper', () => {
-		expect(spotifyClient.getUserAlbumsWrapper()).toBeInstanceOf(UserAlbumsWrapper);
+		expect(spotifyClient.userAlbumsWrapper).toBeInstanceOf(UserAlbumsWrapper);
 	});
 
 	it('should get UserTracks wrapper', () => {
-		expect(spotifyClient.getUserTracksWrapper()).toBeInstanceOf(UserTracksWrapper);
+		expect(spotifyClient.userTracksWrapper).toBeInstanceOf(UserTracksWrapper);
 	});
 
 	it('should get Users wrapper', () => {
-		expect(spotifyClient.getUsersWrapper()).toBeInstanceOf(UsersWrapper);
+		expect(spotifyClient.usersWrapper).toBeInstanceOf(UsersWrapper);
 	});
 
 	it('should get User Shows wrapper', () => {
-		expect(spotifyClient.getUserShowsWrapper()).toBeInstanceOf(UserShowsWrapper);
+		expect(spotifyClient.userShowsWrapper).toBeInstanceOf(UserShowsWrapper);
 	});
 
 	it('should get User episodes wrapper', () => {
-		expect(spotifyClient.getUserEpisodesWrapper()).toBeInstanceOf(UserEpisodesWrapper);
+		expect(spotifyClient.userEpisodesWrapper).toBeInstanceOf(UserEpisodesWrapper);
 	});
 
 	it('should get User audiobook wrapper', () => {
-		expect(spotifyClient.getUserAudioBookWrapper()).toBeInstanceOf(UserAudiobookWrapper);
+		expect(spotifyClient.userAudiobookWrapper).toBeInstanceOf(UserAudiobookWrapper);
 	});
 
 	it('should get Playlist wrapper', () => {
-		expect(spotifyClient.getPlaylistWrapper()).toBeInstanceOf(PlaylistWrapper);
+		expect(spotifyClient.playlistWrapper).toBeInstanceOf(PlaylistWrapper);
 	});
 
 	it('should get User Playlist wrapper', () => {
-		expect(spotifyClient.getUserPlaylistWrapper()).toBeInstanceOf(UserPlaylistWrapper);
+		expect(spotifyClient.userPlaylistWrapper).toBeInstanceOf(UserPlaylistWrapper);
 	});
 });

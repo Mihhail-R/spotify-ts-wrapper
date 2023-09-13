@@ -19,249 +19,53 @@ import UsersWrapper from "./Users/UsersWrapper";
 import UserWrapper from "./Users/UserWrapper";
 
 export default class SpotifyClient {
+  private readonly httpClient: IHttpClient;
   /**
    * General wrappers that can be accessed without user authentication but with app authentication
    */
-  private artistWrapper: ArtistsWrapper;
-  private albumsWrapper: AlbumsWrapper;
-  private audiobookWrapper: AudiobookWrapper;
-  private episodesWrapper: EpisodesWrapper;
-  private searchWrapper: SearchWrapper;
-  private miscWrapper: MiscWrapper;
-  private showsWrapper: ShowsWrapper;
-  private usersWrapper: UsersWrapper;
-  private tracksWrapper: TracksWrapper;
-  private playlistWrapper: PlaylistWrapper;
+  public artistWrapper: ArtistsWrapper;
+  public albumsWrapper: AlbumsWrapper;
+  public audiobookWrapper: AudiobookWrapper;
+  public episodesWrapper: EpisodesWrapper;
+  public searchWrapper: SearchWrapper;
+  public miscWrapper: MiscWrapper;
+  public showsWrapper: ShowsWrapper;
+  public usersWrapper: UsersWrapper;
+  public tracksWrapper: TracksWrapper;
+  public playlistWrapper: PlaylistWrapper;
 
   /**
    * User specific wrappers, these cannot be accessed without user authentication and proper scopes
    */
-  private userAlbumsWrapper: UserAlbumsWrapper;
-  private userAudiobookWrapper: UserAudiobookWrapper;
-  private userEpisodesWrapper: UserEpisodesWrapper;
-  private userWrapper: UserWrapper;
-  private playerWrapper: PlayerWrapper;
-  private userShowsWrapper: UserShowsWrapper;
-  private userTracksWrapper: UserTracksWrapper;
-  private userPlaylistWrapper: UserPlaylistWrapper;
+  public userAlbumsWrapper: UserAlbumsWrapper;
+  public userAudiobookWrapper: UserAudiobookWrapper;
+  public userEpisodesWrapper: UserEpisodesWrapper;
+  public userWrapper: UserWrapper;
+  public playerWrapper: PlayerWrapper;
+  public userShowsWrapper: UserShowsWrapper;
+  public userTracksWrapper: UserTracksWrapper;
+  public userPlaylistWrapper: UserPlaylistWrapper;
 
-  constructor(private readonly httpClient: IHttpClient) {
+  constructor(httpClient: IHttpClient) {
     this.httpClient = httpClient;
-  }
 
-  /**
-   * Get artist wrapper
-   * @returns ArtistsWrapper
-   */
-  public getArtistWrapper(): ArtistsWrapper {
-    if (!this.artistWrapper) {
-      this.artistWrapper = new ArtistsWrapper(this.httpClient);
-    }
-
-    return this.artistWrapper;
-  }
-
-  /**
-   * Get albums wrapper
-   * @returns AlbumsWrapper
-   */
-  public getAlbumsWrapper(): AlbumsWrapper {
-    if (!this.albumsWrapper) {
-      this.albumsWrapper = new AlbumsWrapper(this.httpClient);
-    }
-
-    return this.albumsWrapper;
-  }
-
-  /**
-   * Get user albums wrapper
-   * @returns UserAlbumsWrapper
-   */
-  public getUserAlbumsWrapper(): UserAlbumsWrapper {
-    if (!this.userAlbumsWrapper) {
-      this.userAlbumsWrapper = new UserAlbumsWrapper(this.httpClient);
-    }
-
-    return this.userAlbumsWrapper;
-  }
-
-  /**
-   * Get audiobook wrapper
-   * @returns AudiobookWrapper
-   */
-  public getAudioBookWrapper(): AudiobookWrapper {
-    if (!this.audiobookWrapper) {
-      this.audiobookWrapper = new AudiobookWrapper(this.httpClient);
-    }
-
-    return this.audiobookWrapper;
-  }
-
-  /**
-   * Get user audiobook wrapper
-   * @returns UserAudiobookWrapper
-   */
-  public getUserAudioBookWrapper(): UserAudiobookWrapper {
-    if (!this.userAudiobookWrapper) {
-      this.userAudiobookWrapper = new UserAudiobookWrapper(this.httpClient);
-    }
-
-    return this.userAudiobookWrapper;
-  }
-
-  /**
-   * Get episodes wrapper
-   * @returns EpisodesWrapper
-   */
-  public getEpisodesWrapper(): EpisodesWrapper {
-    if (!this.episodesWrapper) {
-      this.episodesWrapper = new EpisodesWrapper(this.httpClient);
-    }
-
-    return this.episodesWrapper;
-  }
-
-  /**
-   * Get search wrapper
-   * @returns SearchWrapper
-   */
-  public getSearchWrapper(): SearchWrapper {
-    if (!this.searchWrapper) {
-      this.searchWrapper = new SearchWrapper(this.httpClient);
-    }
-
-    return this.searchWrapper;
-  }
-
-  /**
-   * Get misc wrapper
-   * @returns MiscWrapper
-   */
-  public getMiscWrapper(): MiscWrapper {
-    if (!this.miscWrapper) {
-      this.miscWrapper = new MiscWrapper(this.httpClient);
-    }
-
-    return this.miscWrapper;
-  }
-
-  /**
-   * Get shows wrapper
-   * @returns ShowsWrapper
-   */
-  public getShowsWrapper(): ShowsWrapper {
-    if (!this.showsWrapper) {
-      this.showsWrapper = new ShowsWrapper(this.httpClient);
-    }
-
-    return this.showsWrapper;
-  }
-
-  /**
-   * Get user audiobook wrapper
-   * @returns UserEpisodesWrapper
-   */
-  public getUserEpisodesWrapper(): UserEpisodesWrapper {
-    if (!this.userEpisodesWrapper) {
-      this.userEpisodesWrapper = new UserEpisodesWrapper(this.httpClient);
-    }
-
-    return this.userEpisodesWrapper;
-  }
-
-  /**
-   * Get user wrapper
-   * @returns UserWrapper
-   */
-  public getUserWrapper(): UserWrapper {
-    if (!this.userWrapper) {
-      this.userWrapper = new UserWrapper(this.httpClient);
-    }
-
-    return this.userWrapper;
-  }
-
-  /**
-   * Get player wrapper
-   * @returns PlayerWrapper
-   */
-  public getPlayerWrapper(): PlayerWrapper {
-    if (!this.playerWrapper) {
-      this.playerWrapper = new PlayerWrapper(this.httpClient);
-    }
-
-    return this.playerWrapper;
-  }
-
-  /**
-   * Get user shows wrapper
-   * @returns ShowsWrapper
-   */
-  public getUserShowsWrapper(): UserShowsWrapper {
-    if (!this.userShowsWrapper) {
-      this.userShowsWrapper = new UserShowsWrapper(this.httpClient);
-    }
-
-    return this.userShowsWrapper;
-  }
-
-  /**
-   * Get user tracks wrapper
-   * @returns UserTracksWrapper
-   */
-  public getUserTracksWrapper(): UserTracksWrapper {
-    if (!this.userTracksWrapper) {
-      this.userTracksWrapper = new UserTracksWrapper(this.httpClient);
-    }
-
-    return this.userTracksWrapper;
-  }
-
-  /**
-   * Get users wrapper
-   * @returns UsersWrapper
-   */
-  public getUsersWrapper(): UsersWrapper {
-    if (!this.usersWrapper) {
-      this.usersWrapper = new UsersWrapper(this.httpClient);
-    }
-
-    return this.usersWrapper;
-  }
-
-  /**
-   * Get tracks wrapper
-   * @returns TracksWrapper
-   */
-  public getTracksWrapper(): TracksWrapper {
-    if (!this.tracksWrapper) {
-      this.tracksWrapper = new TracksWrapper(this.httpClient);
-    }
-
-    return this.tracksWrapper;
-  }
-
-  /**
-   * Get playlist wrapper
-   * @returns PlaylistWrapper
-   */
-  public getPlaylistWrapper(): PlaylistWrapper {
-    if (!this.playlistWrapper) {
-      this.playlistWrapper = new PlaylistWrapper(this.httpClient);
-    }
-
-    return this.playlistWrapper;
-  }
-
-  /**
-   * Get user playlist wrapper
-   * @returns UserPlaylistWrapper
-   */
-  public getUserPlaylistWrapper(): UserPlaylistWrapper {
-    if (!this.userPlaylistWrapper) {
-      this.userPlaylistWrapper = new UserPlaylistWrapper(this.httpClient);
-    }
-
-    return this.userPlaylistWrapper;
+    this.artistWrapper = new ArtistsWrapper(this.httpClient);
+    this.albumsWrapper = new AlbumsWrapper(this.httpClient);
+    this.audiobookWrapper = new AudiobookWrapper(this.httpClient);
+    this.episodesWrapper = new EpisodesWrapper(this.httpClient);
+    this.searchWrapper = new SearchWrapper(this.httpClient);
+    this.miscWrapper = new MiscWrapper(this.httpClient);
+    this.showsWrapper = new ShowsWrapper(this.httpClient);
+    this.usersWrapper = new UsersWrapper(this.httpClient);
+    this.tracksWrapper = new TracksWrapper(this.httpClient);
+    this.playlistWrapper = new PlaylistWrapper(this.httpClient);
+    this.userAlbumsWrapper = new UserAlbumsWrapper(this.httpClient);
+    this.userAudiobookWrapper = new UserAudiobookWrapper(this.httpClient);
+    this.userEpisodesWrapper = new UserEpisodesWrapper(this.httpClient);
+    this.userWrapper = new UserWrapper(this.httpClient);
+    this.playerWrapper = new PlayerWrapper(this.httpClient);
+    this.userShowsWrapper = new UserShowsWrapper(this.httpClient);
+    this.userTracksWrapper = new UserTracksWrapper(this.httpClient);
+    this.userPlaylistWrapper = new UserPlaylistWrapper(this.httpClient);
   }
 }

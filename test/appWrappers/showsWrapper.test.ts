@@ -16,7 +16,7 @@ describe('ShowsWrapper', () => {
 	beforeAll(async () => {
 		await httpClient.authorizeApp();
 		spotifyClient = new SpotifyClient(httpClient);
-		showsWrapper = spotifyClient.getShowsWrapper();
+		showsWrapper = spotifyClient.showsWrapper;
 	});
 
 	it('Should get a single show', async () => {

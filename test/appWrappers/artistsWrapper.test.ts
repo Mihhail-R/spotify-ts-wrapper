@@ -16,7 +16,7 @@ describe('ArtistsWrapper', () => {
 	beforeAll(async () => {
 		await httpClient.authorizeApp();
 		spotifyClient = new SpotifyClient(httpClient);
-		artistsWrapper = spotifyClient.getArtistWrapper();
+		artistsWrapper = spotifyClient.artistWrapper;
 	});
 
 	it('Should get artist', async () => {
