@@ -3,6 +3,9 @@ import { HttpClient } from '../src';
 describe('HttpClient', () => {
 	const httpClient = new HttpClient({
 		baseUrl: "https://jsonplaceholder.typicode.com/",
+		authenticationUrl: "https://accounts.spotify.com/api/token",
+		clientId: "x",
+		clientSecret: "y",
 	});
 
 	it('should send a get request', async () => {
@@ -74,5 +77,23 @@ describe('HttpClient', () => {
 		const result = httpClient.authorizeApp();
 
 		await expect(result).rejects.toThrow();
-	})
+	});
+
+	it('Should create authorization url', async () => {
+		const result = httpClient.createUserAuthUrl(
+			"http://localhost:3000",
+			["user-read-private", "user-read-email"],
+		);
+
+		expect(result).toBeDefined();
+	});
+
+	it('Should fail to authorize user', async () => {
+		const result = httpClient.authorizeUser(
+			"http://localhost:3000",
+			"code",
+		);
+
+		await expect(result).rejects.toThrow();
+	});
 });
