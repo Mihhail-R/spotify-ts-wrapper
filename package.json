@@ -48,6 +48,6 @@
 		]
 	},
 	"dependencies": {
-		"undici": "^5.26.4"
+		"undici": "^5.28.3"
 	}
 }
