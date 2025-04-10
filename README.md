@@ -4,7 +4,7 @@
 
 Personal wrapper for the Spotify Web API written in TypeScript.
 
-Please keep in mind that Spotify provides their own SDK as well. See more info here: https://developer.spotify.com/documentation/web-api/libraries/
+Please keep in mind that Spotify provides their own SDK as well. See more info here: [https://developer.spotify.com/documentation/web-api/libraries/](https://developer.spotify.com/blog/2023-07-03-typescript-sdk)
 
 ## Installation and configuration
 
