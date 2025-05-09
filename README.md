@@ -1,3 +1,8 @@
+# DEPRECATED
+
+Since spotify provides their own sdk at this point then there is no reason to use this. This project will no longer receive updates. 
+
+
 # Spotify Web API wrapper
 
 ## Description
